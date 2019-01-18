@@ -5,7 +5,8 @@ import MainPage from './components/MainPage';
 import { Route, Switch } from "react-router-dom";
 import ModShowPage from './components/ModShowPage';
 import EditProfileForm from './components/EditProfileForm';
-import LoginSignupForm from './components/LoginSignUpForm';
+import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
 // import StatsDiv from './components/StatsDiv';          will delay this component for later
 
 class App extends Component {
@@ -40,7 +41,11 @@ class App extends Component {
             )}} />
           <Route path="/login" render={()=>{
             return (
-            <LoginSignupForm isUserLoggedIn={this.state.isUserLoggedIn} />
+            <LoginForm isUserLoggedIn={this.state.isUserLoggedIn} />
+            )}} />
+            <Route path="/signUp" render={()=>{
+            return (
+            <SignUpForm />
             )}} />
           
           
