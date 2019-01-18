@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   state = {
@@ -7,6 +8,9 @@ class NavBar extends Component {
   render() { 
     return ( 
     <div><h3>NavBar</h3>
+
+
+    
     {/* <ul>
       if (a user is signed in) {
         <link to={"/mod1"}>
@@ -35,7 +39,7 @@ class NavBar extends Component {
 
       } else {
         
-        <link to={"/loginSignUpForm"}>
+        <link to={"/LoginSignUpForm"}>
         <li><h3>Login/SignUp</h3></li>
         </link>
         </ul>*/}
