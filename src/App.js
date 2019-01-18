@@ -16,10 +16,11 @@ class App extends Component {
     this.state = {
       isUserLoggedIn: true,
       currentUser: {
-        full_name: "",
+        fullName: "",
         password: "",
-        mod_id: 0
-      }
+        modId: 0
+      },
+      mods: []
     };
 
     this.updateHandler = this.updateHandler.bind(this);
@@ -40,6 +41,7 @@ class App extends Component {
                 <EditProfileForm
                   currentUser={this.state.currentUser}
                   updateHandler={this.updateHandler}
+                  mods={this.state.mods}
                 />
               );
             }}

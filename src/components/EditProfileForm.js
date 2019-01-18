@@ -12,11 +12,11 @@ class EditProfileForm extends Component {
             <Fragment>
                 <form onSubmit={this.submitHandler}>
                     <label htmlFor="full_name">Full Name: </label>
-                    <input type="text" name="full_name" value={this.props.userInfo.full_name} />
+                    <input type="text" name="full_name" value={this.props.currentUser.fullName} />
                     <label htmlFor="password">Password: </label>
                     <input type="password" name="password" id="password" />
                     <label htmlFor="mod">Mod #: </label>
-                    <select name="mod" id="mod" value={this.userInfo.mod_id}>
+                    <select name="mod" id="mod" value={this.props.currentUser.modId}>
                         {this.getMods()}
                     </select>
                     <button>Update</button>
@@ -26,7 +26,7 @@ class EditProfileForm extends Component {
     }
 
     getMods(){
-        return this.state.mods.map(mod => <option value={mod.id}>mod.rank</option>)
+        return this.props.mods.map(mod => <option value={mod.id}>mod.rank</option>)
     }
 
     submitHandler(e){
