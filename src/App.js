@@ -15,6 +15,7 @@ class App extends Component {
 
     this.state = {
       isUserLoggedIn: true,
+      current_mod: 3,
       currentUser: {
         full_name: "",
         password: "",
@@ -25,6 +26,8 @@ class App extends Component {
     this.updateHandler = this.updateHandler.bind(this);
   }
 
+  handleModSelect = () => {};
+
   render() {
     return (
       <div>
@@ -32,7 +35,13 @@ class App extends Component {
 
         <Switch>
           <Route path="/home" component={MainPage} />
-          <Route path="/mod/:id" component={ModShowPage} />
+          <Route
+            path="/mod/:id"
+            render={RouterProps => {
+              console.log(RouterProps);
+              return <ModShowPage mod_id={RouterProps.match.params.id} />;
+            }}
+          />
           <Route
             path="/editProfile"
             render={() => {

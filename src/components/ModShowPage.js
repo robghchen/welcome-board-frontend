@@ -1,25 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class ModShowPage extends Component {
+  state = {
+    mod_posts: this.props.mod_id
+  };
 
-    constructor(){
-        super()
-
-        this.state = {
-
-        }
-    }
-
-    render(){
-
-        return (
-
-            <div>
-
-            </div>
-        )
-
-    }
+  render() {
+    return <div>{`This is show page for mod ${this.props.mod_id}`}</div>;
+  }
 }
 
 export default ModShowPage;
