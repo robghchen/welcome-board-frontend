@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar"
 import MainPage from './components/MainPage';
 import EditProfileForm from './components/EditProfileForm';
 import LoginSignupForm from './components/LoginSignupForm';
-import StatsDiv from './components/StatsDiv';
+// import StatsDiv from './components/StatsDiv';          will delay this component for later
 
 class App extends Component {
   constructor(props){
@@ -30,7 +30,7 @@ class App extends Component {
         <NavBar isUserLoggedIn={this.state.isUserLoggedIn} />
         <EditProfileForm currentUser={this.state.currentUser} updateHandler={this.updateHandler} />
         <LoginSignupForm isUserLoggedIn={this.state.isUserLoggedIn} />
-        <StatsDiv />
+        {/* {<StatsDiv />} */}
         <MainPage />
       </div>
     );
