@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from "./components/NavBar"
 import MainPage from './components/MainPage';
 import EditProfileForm from './components/EditProfileForm';
-import LoginSignupForm from './components/LoginSignupForm';
+import LoginSignupForm from './components/LoginForm';
 // import StatsDiv from './components/StatsDiv';          will delay this component for later
 
 class App extends Component {
