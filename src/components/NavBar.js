@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class NavBar extends Component {
-  state = {  }
+  state = { test: x  }
   render() { 
     return ( <div>NavBar<hr/></div> );
   }
