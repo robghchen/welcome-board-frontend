@@ -4,48 +4,28 @@ import { Link } from "react-router-dom";
 class NavBar extends Component {
   render() {
     return (
-      <div>
-        <ul className="nav">
-          {this.props.isUserLoggedIn ? (
-            <div>
-              <Link to={"/mod1"}>
-                <li>
-                  <h3>Mod 1</h3>
-                </li>
-              </Link>
-
-              <Link to={"/mod2"}>
-                <li>
-                  <h3>Mod 2</h3>
-                </li>
-              </Link>
-
-              <Link to={"/mod3"}>
-                <li>
-                  <h3>Mod 3</h3>
-                </li>
-              </Link>
-
-              <Link to={"/mod4"}>
-                <li>
-                  <h3>Mod 4</h3>
-                </li>
-              </Link>
-
-              <Link to={"/mod5"}>
-                <li>
-                  <h3>Mod 5</h3>
-                </li>
-              </Link>
-            </div>
-          ) : (
-            <Link to={"/LoginSignUpForm"}>
-              <li>
-                <h3>Login/SignUp</h3>
-              </li>
-            </Link>
-          )}
-        </ul>
+      <div class="ui menu">
+        <Link to={"/mod/1"} class="item">
+          Mod 1
+        </Link>
+        <Link to={"/mod/2"} class="item">
+          Mod 2
+        </Link>
+        <Link to={"/mod/3"} class="item">
+          Mod 3
+        </Link>
+        <Link to={"/mod/4"} class="item">
+          Mod 4
+        </Link>
+        <Link to={"/mod/5"} class="item">
+          Mod 5
+        </Link>
+        <Link to={"/login"} class="item">
+          Login
+        </Link>
+        <Link to={"/signup"} class="item">
+          SignUp
+        </Link>
       </div>
     );
   }
