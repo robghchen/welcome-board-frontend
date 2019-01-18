@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 class NavBar extends Component {
-  state = {  }
+  state = {
+    
+   }
   render() { 
     return ( 
     <div><h3>NavBar</h3>
@@ -41,4 +43,4 @@ class NavBar extends Component {
   }
 }
  
-export default NavBar;
+export default NavBar

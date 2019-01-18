@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import ModsContainer from "./containers.js/ModsContainer";
+import ModsContainer from "./containers/ModsContainer";
 import NavBar from "./components/NavBar";
 
 class App extends Component {
@@ -15,4 +15,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
