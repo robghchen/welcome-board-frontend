@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import MainPage from "./components/MainPage";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import ModShowPage from "./components/ModShowPage";
 import EditProfileForm from "./components/EditProfileForm";
 import LoginForm from "./components/LoginForm";
@@ -28,13 +28,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/mods').then(resp => resp.json()).then(mods => this.setState({ mods }));
-    fetch('http://localhost:3000/api/v1/users').then(resp => resp.json()).then(users => this.setState({ users }));
-    fetch('http://localhost:3000/api/v1/posts').then(resp => resp.json()).then(posts => this.setState({ posts }));
+    fetch("http://localhost:3000/api/v1/mods")
+      .then(resp => resp.json())
+      .then(mods => this.setState({ mods }));
+    fetch("http://localhost:3000/api/v1/users")
+      .then(resp => resp.json())
+      .then(users => this.setState({ users }));
+    fetch("http://localhost:3000/api/v1/posts")
+      .then(resp => resp.json())
+      .then(posts => this.setState({ posts }));
+
+    let token = localStorage.getItem("token");
+    fetch("http://localhost:3000/api/v1/current_user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Action: "application/json",
+        Authorization: `${token}`
+      }
+    });
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
 
     return (
       <div>
@@ -58,13 +74,17 @@ class App extends Component {
           <Route
             path="/login"
             render={() => {
-              return <LoginForm submitSignUpHandler={this.submitLoginHandler} />;
+              return (
+                <LoginForm submitSignUpHandler={this.submitLoginHandler} />
+              );
             }}
           />
           <Route
             path="/signUp"
             render={() => {
-              return <SignUpForm submitSignUpHandler={this.submitSignUpHandler}/>;
+              return (
+                <SignUpForm submitSignUpHandler={this.submitSignUpHandler} />
+              );
             }}
           />
         </Switch>
@@ -88,17 +108,19 @@ class App extends Component {
         password: currentUser.password,
         mod_id: currentUser.mod_id
       })
-    }).then(resp => resp.json()).then(console.log);
+    })
+      .then(resp => resp.json())
+      .then(console.log);
   }
 
   submitSignUpHandler(userInfo, event) {
-    event.preventDefault()
-    this.createUser(userInfo)
-    this.props.history.push("/")
+    event.preventDefault();
+    this.createUser(userInfo);
+    this.props.history.push("/");
   }
 
   createUser = userInfo => {
-    console.log("app", userInfo)
+    console.log("app", userInfo);
     fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
@@ -109,23 +131,24 @@ class App extends Component {
         full_name: userInfo.signupFullName,
         password: userInfo.signupPassword
       })
-    }).then(res => res.json())
-    .then(res => {
-      localStorage.setItem("token", res.jwt)
-      this.setState({
-        user: res.user
-      })
     })
-  }
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem("token", res.jwt);
+        this.setState({
+          user: res.user
+        });
+      });
+  };
 
   submitLoginHandler(userInfo, event) {
-    event.preventDefault()
-    this.getUser(userInfo)
-    this.props.history.push("/")
+    event.preventDefault();
+    this.getUser(userInfo);
+    this.props.history.push("/");
   }
 
   getUser = userInfo => {
-    console.log("app", userInfo)
+    console.log("app", userInfo);
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
@@ -136,15 +159,15 @@ class App extends Component {
         full_name: userInfo.loginFullName,
         password: userInfo.loginPassword
       })
-    }).then(res => res.json())
-    .then(res => {
-      localStorage.setItem("token", res.jwt)
-      this.setState({
-        user: res.user
-      })
     })
-  }
-
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem("token", res.jwt);
+        this.setState({
+          user: res.user
+        });
+      });
+  };
 }
 
-export default App;
+export default withRouter(App);
