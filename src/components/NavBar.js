@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 class NavBar extends Component {
   render() {
     return (
+
+      
       <div class="ui menu">
         <Link to={"/mod/1"} class="item">
           Mod 1
