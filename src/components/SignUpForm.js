@@ -31,7 +31,9 @@ class SignUpForm extends Component {
 
   render() {
     return (
+
       <div className="ui card">
+      <h2>Sign Up</h2>
         <Route
           path="/signup"
           render={() => {

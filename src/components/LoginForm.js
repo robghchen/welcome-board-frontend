@@ -19,7 +19,7 @@ class LoginForm extends Component {
   submitLoginHandler = event => {
     event.preventDefault();
 
-    this.props.submitLoginHandler(this.state);
+    this.props.submitLoginHandler(this.state, event);
     this.setState({
       fullName: "",
       password: ""
@@ -29,6 +29,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div className="ui card">
+      <h2>Login</h2>
         <Route
           path="/login"
           render={() => {

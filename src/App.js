@@ -58,13 +58,13 @@ class App extends Component {
           <Route
             path="/login"
             render={() => {
-              return <LoginForm isUserLoggedIn={this.state.isUserLoggedIn} />;
+              return <LoginForm submitSignUpHandler={this.submitLoginHandler} />;
             }}
           />
           <Route
             path="/signUp"
             render={() => {
-              return <SignUpForm />;
+              return <SignUpForm submitSignUpHandler={this.submitSignUpHandler}/>;
             }}
           />
         </Switch>
@@ -106,14 +106,41 @@ class App extends Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        full_name: userInfo.full_name,
-        password: userInfo.password
+        full_name: userInfo.signupFullName,
+        password: userInfo.signupPassword
       })
     }).then(res => res.json())
-    .then(user => {
-      localStorage.setItem("token", user.jwt)
+    .then(res => {
+      localStorage.setItem("token", res.jwt)
       this.setState({
-        user: user
+        user: res.user
+      })
+    })
+  }
+
+  submitLoginHandler(userInfo, event) {
+    event.preventDefault()
+    this.getUser(userInfo)
+    this.props.history.push("/")
+  }
+
+  getUser = userInfo => {
+    console.log("app", userInfo)
+    fetch("http://localhost:3000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        full_name: userInfo.loginFullName,
+        password: userInfo.loginPassword
+      })
+    }).then(res => res.json())
+    .then(res => {
+      localStorage.setItem("token", res.jwt)
+      this.setState({
+        user: res.user
       })
     })
   }
