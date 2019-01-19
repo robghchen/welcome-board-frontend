@@ -1,50 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class NavBar extends Component {
-  state = {
-    
-   }
-  render() { 
-    return ( 
-    <div><h3>NavBar</h3>
-
-
-    
-    {/* <ul>
-      if (a user is signed in) {
-        <link to={"/mod1"}>
-        <li><h3>Mod 1</h3></li>
-        </link>
-
-
-        <link to={"/mod2"}>
-        <li><h3>Mod 2</h3></li>
-        </link>
-
-
-        <link to={"/mod3"}>
-        <li><h3>Mod 3</h3></li>
-        </link>
-
-
-        <link to={"/mod4"}>
-        <li><h3>Mod 4</h3></li>
-        </link>
-
-
-        <link to={"/mod5"}>
-        <li><h3>Mod 5</h3></li>
-        </link>
-
-      } else {
-        
-        <link to={"/LoginSignUpForm"}>
-        <li><h3>Login/SignUp</h3></li>
-        </link>
-        </ul>*/}
-    </div> );
+  render() {
+    console.log("navbar", this.props.isUserLoggedIn);
+    return (
+      <React.Fragment>
+        {this.props.isUserLoggedIn ? (
+          <div className="ui menu">
+            <Link to={"/mod/1"} class="item">
+              Mod 1
+            </Link>
+            <Link to={"/mod/2"} class="item">
+              Mod 2
+            </Link>
+            <Link to={"/mod/3"} class="item">
+              Mod 3
+            </Link>
+            <Link to={"/mod/4"} class="item">
+              Mod 4
+            </Link>
+            <Link to={"/mod/5"} class="item">
+              Mod 5
+            </Link>
+            <Link to={"/editProfile"} class="item">
+              Edit Profile
+            </Link>
+          </div>
+        ) : (
+          <div className="ui menu">
+            <Link to={"/login"} class="item">
+              Login
+            </Link>
+            <Link to={"/signup"} class="item">
+              SignUp
+            </Link>
+          </div>
+        )}
+      </React.Fragment>
+    );
   }
 }
- 
-export default NavBar
+
+export default NavBar;
