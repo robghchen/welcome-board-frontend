@@ -3,12 +3,9 @@ import { Route, Switch } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
-      fullName: "",
+      signupFullName: "",
       password: "",
-      image: "",
-      mod: 1
-    
-    
+      mod_id: 1
   };
 
   changeHandler = event => {
@@ -22,10 +19,9 @@ class SignUpForm extends Component {
 
     this.props.submitSignUpHandler(this.state, event);
     this.setState({
-      fullName: "",
-      password: "",
-      image: "",
-      mod: 1
+      signupFullName: "",
+      signupPassword: "",
+      mod_id: 1
     });
   };
 
@@ -44,10 +40,10 @@ class SignUpForm extends Component {
                   <input
                     id="full-name"
                     className="form-control"
-                    name="fullName"
+                    name="signupFullName"
                     type="text"
                     placeholder="Enter your full name"
-                    value={this.state.value}
+                    value={this.state.signupFullName}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -55,10 +51,10 @@ class SignUpForm extends Component {
                   <input
                     id="password"
                     className="form-control"
-                    name="password"
+                    name="signupPassword"
                     type="text"
                     placeholder="Enter a password"
-                    value={this.state.password}
+                    value={this.state.signupPassword}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -77,16 +73,6 @@ class SignUpForm extends Component {
                     <option value="5">5</option>
                   </select>
                   <br />
-                  <label htmlFor="image">Profile Picture:</label>
-                  <input
-                    id="image"
-                    className="form-control"
-                    name="image"
-                    type="text"
-                    placeholder="Enter picture url"
-                    value={this.state.image}
-                    onChange={this.changeHandler}
-                  />
                   <input type="submit" className="button" value="Submit" />
                 </form>
               </div>

@@ -21,6 +21,7 @@ class App extends Component {
         password: "password",
         mod_id: 4
       },
+      user: {},
       mods: []
     };
 
@@ -75,7 +76,7 @@ class App extends Component {
             path="/login"
             render={() => {
               return (
-                <LoginForm submitSignUpHandler={this.submitLoginHandler} />
+                <LoginForm submitLoginHandler={this.submitLoginHandler} />
               );
             }}
           />
@@ -141,14 +142,13 @@ class App extends Component {
       });
   };
 
-  submitLoginHandler(userInfo, event) {
+  submitLoginHandler = (userInfo, event) => {
     event.preventDefault();
     this.getUser(userInfo);
     this.props.history.push("/");
   }
 
   getUser = userInfo => {
-    console.log("app", userInfo);
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
