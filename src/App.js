@@ -16,16 +16,26 @@ class App extends Component {
     this.state = {
       isUserLoggedIn: true,
       currentUser: {
-        full_name: "",
-        password: "",
-        mod_id: 0
-      }
+        id: 2,
+        full_name: "Carlo Fernando",
+        password: "password",
+        mod_id: 4
+      },
+      mods: []
     };
 
     this.updateHandler = this.updateHandler.bind(this);
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/mods').then(resp => resp.json()).then(mods => this.setState({ mods }));
+    fetch('http://localhost:3000/api/v1/users').then(resp => resp.json()).then(users => this.setState({ users }));
+    fetch('http://localhost:3000/api/v1/posts').then(resp => resp.json()).then(posts => this.setState({ posts }));
+  }
+
   render() {
+    console.log(this.state)
+
     return (
       <div>
         <NavBar isUserLoggedIn={this.state.isUserLoggedIn} />
@@ -40,6 +50,7 @@ class App extends Component {
                 <EditProfileForm
                   currentUser={this.state.currentUser}
                   updateHandler={this.updateHandler}
+                  mods={this.state.mods}
                 />
               );
             }}
@@ -64,7 +75,7 @@ class App extends Component {
   }
 
   updateHandler(currentUser) {
-    this.setState({ currentUser });
+    this.setState({ currentUser: currentUser });
 
     fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
       method: "PATCH",
@@ -77,8 +88,9 @@ class App extends Component {
         password: currentUser.password,
         mod_id: currentUser.mod_id
       })
-    });
+    }).then(resp => resp.json()).then(console.log);
   }
+
 }
 
 export default App;

@@ -3,18 +3,17 @@ import { Route, Switch } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
-    currentUser: {
       fullName: "",
       password: "",
       image: "",
       mod: 1
-    },
+    
     
   };
 
   changeHandler = event => {
     this.setState({
-      currentUser:[event.target.name] = event.target.value
+      [event.target.name] : event.target.value
     });
   };
 
@@ -46,7 +45,7 @@ class SignUpForm extends Component {
                     name="fullName"
                     type="text"
                     placeholder="Enter your full name"
-                    value={this.state.currentUser.value}
+                    value={this.state.value}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -57,7 +56,7 @@ class SignUpForm extends Component {
                     name="password"
                     type="text"
                     placeholder="Enter a password"
-                    value={this.state.currentUser.password}
+                    value={this.state.password}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -66,7 +65,7 @@ class SignUpForm extends Component {
                     id="mod"
                     className="form-control"
                     name="mod"
-                    value={this.state.currentUser.mod}
+                    value={this.state.mod}
                     onChange={this.changeHandler}
                   >
                     <option value="1">1</option>
@@ -83,7 +82,7 @@ class SignUpForm extends Component {
                     name="image"
                     type="text"
                     placeholder="Enter picture url"
-                    value={this.state.currentUser.image}
+                    value={this.state.image}
                     onChange={this.changeHandler}
                   />
                   <input type="submit" className="button" value="Submit" />

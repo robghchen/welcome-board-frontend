@@ -28,6 +28,9 @@ class NavBar extends Component {
         <Link to={"/signup"} class="item">
           SignUp
         </Link>
+        <Link to={"/editProfile"} class="item">
+          Edit Profile
+        </Link>
       </div>
     );
   }
