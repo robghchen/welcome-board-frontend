@@ -44,3 +44,30 @@
 .mod-link-parent {
   text-align: center;
 }
+
+.form-control {
+  width: 95%;
+}
+
+.submit.button {
+  position: relative;
+  margin-top: 1em;
+  margin-left: 10em;
+}
+
+#login-form {
+  position: relative;
+  margin-top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
+}
+
+#signup-form {
+  position: relative;
+  margin-top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
+}
+
