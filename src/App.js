@@ -19,12 +19,13 @@ class App extends Component {
       currentUser: {
         id: "",
         fullName: "",
-        password: "",
+        // password: "",
         modId: 0
       },
       mods: [],
       posts: [],
-      users: []
+      users: [],
+      token: ""
     };
 
     this.updateHandler = this.updateHandler.bind(this);
@@ -43,6 +44,12 @@ class App extends Component {
         this.setState({ posts });
       });
 
+    // Need to think about this block of code because
+    // it will never get executed. ComponentDidMount only
+    // execute once, and when it is invoked,
+    // the value of this.state.isUserLoggedIn is going to be
+    // false.
+
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
       fetch("http://localhost:3000/api/v1/current_user", {
@@ -57,7 +64,7 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.state);
+    console.log(this.state.token);
 
     return (
       <div>
@@ -115,12 +122,14 @@ class App extends Component {
 
   updateHandler(currentUser) {
     this.setState({ currentUser });
+    console.log(this.token)
 
     fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        Authorization: `${this.state.token}`
       },
       body: JSON.stringify({
         full_name: currentUser.full_name,
@@ -138,6 +147,7 @@ class App extends Component {
           }
         })
       );
+      this.props.history.push("/")
   }
 
   submitSignUpHandler(userInfo, event) {
@@ -174,6 +184,7 @@ class App extends Component {
     this.props.history.push("/");
   };
 
+
   getUser = userInfo => {
     fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
@@ -196,13 +207,15 @@ class App extends Component {
             full_name: res.user.full_name,
             password: "",
             mod_id: res.user.mod_id
-          }
+          },
+          token: localStorage.getItem("token")
         });
       });
   };
 
   logout = () => {
     //need to remove local storage token
+
     this.props.history.push("/");
   };
 }
