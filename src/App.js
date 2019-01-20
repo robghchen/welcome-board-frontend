@@ -111,7 +111,13 @@ class App extends Component {
       })
     })
       .then(resp => resp.json())
-      .then(console.log);
+      .then(user => this.setState({
+        currentUser: {
+          id: user.id,
+          full_name: user.full_name,
+          mod_id: user.mod_id
+        }
+      }));
   }
 
   submitSignUpHandler(userInfo, event) {
