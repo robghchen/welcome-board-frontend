@@ -27,9 +27,9 @@ class NavBar extends Component {
             <Link to={"/editProfile"} className="item">
               Edit Profile
             </Link>
-            <Link to={"/"} className="item">
+            <span onClick={this.props.logout}>
               Logout
-            </Link>
+            </span>
             </span>
         ) : (
           <span className="ui menu navright">
