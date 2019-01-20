@@ -52,7 +52,7 @@ class SignUpForm extends Component {
                     id="password"
                     className="form-control"
                     name="signupPassword"
-                    type="text"
+                    type="password"
                     placeholder="Enter a password"
                     value={this.state.signupPassword}
                     onChange={this.changeHandler}

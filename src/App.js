@@ -73,6 +73,7 @@ class App extends Component {
             render={() => {
               return (
                 <EditProfileForm
+                  isUserLoggedIn={this.state.isUserLoggedIn}
                   currentUser={this.state.currentUser}
                   updateHandler={this.updateHandler}
                   mods={this.state.mods}
@@ -151,7 +152,7 @@ class App extends Component {
       .then(res => {
         localStorage.setItem("token", res.jwt);
         this.setState({
-          user: res.user
+          currentUser: res.user
         });
       });
   };
