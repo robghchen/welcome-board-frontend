@@ -16,10 +16,10 @@ class App extends Component {
     this.state = {
       isUserLoggedIn: false,
       currentUser: {
-        id: 2,
-        full_name: "Carlo Fernando",
-        password: "password",
-        mod_id: 4
+        id: 0,
+        full_name: "",
+        password: "",
+        mod_id: 0
       },
       user: {},
       mods: []
@@ -164,7 +164,13 @@ class App extends Component {
       .then(res => {
         localStorage.setItem("token", res.jwt);
         this.setState({
-          user: res.user
+          isUserLoggedIn: true,
+          currentUser: {
+            id: res.user.id,
+            full_name: res.user.full_name,
+            password: "",
+            mod_id: res.user.mod_id
+          }
         });
       });
   };
