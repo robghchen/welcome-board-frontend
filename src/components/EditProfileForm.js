@@ -21,7 +21,7 @@ class EditProfileForm extends Component {
         console.log("editprofileform", this.props)
         return (
             <Fragment>
-                this.props.isUserLoggedIn ? (<form onSubmit={this.submitHandler}>
+                {this.props.isUserLoggedIn ? (<form onSubmit={this.submitHandler}>
                     <label htmlFor="full_name">Full Name: </label>
                     <input type="text" name="full_name" onChange={this.changeHandler} value={this.state.full_name} />
                     <label htmlFor="password">Password: </label>
@@ -31,7 +31,7 @@ class EditProfileForm extends Component {
                         {this.getMods()}
                     </select>
                     <button>Update</button>
-                </form>) : (<Redirect to="/login" />)
+                </form>) : (<Redirect to="/login" />)}
             </Fragment>
         );
     }
