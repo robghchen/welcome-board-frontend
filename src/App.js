@@ -18,7 +18,7 @@ class App extends Component {
       current_mod: 0,
       // please do not change the snake case
       currentUser: {
-        id: "",
+        id: 0,
         full_name: "",
         // password: "",
         mod_id: 0
@@ -116,7 +116,6 @@ class App extends Component {
 
   updateHandler(currentUser) {
     this.setState({ currentUser });
-    console.log(this.token)
 
     fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
       method: "PATCH",
@@ -212,8 +211,12 @@ class App extends Component {
     localStorage.removeItem("token");
     this.setState({ 
       currentUser: {
-
-      }
+        id: 0,
+        full_name: "",
+        mod_id: 0
+      },
+      isUserLoggedIn: false,
+      token: ""
     })
     this.props.history.push("/");
   };
