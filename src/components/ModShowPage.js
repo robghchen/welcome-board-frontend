@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PostIt from "./PostIt";
 
 class ModShowPage extends Component {
   state = {
@@ -6,25 +7,29 @@ class ModShowPage extends Component {
   };
 
   showPostArray = () => {
-    let posts = this.props.postArray;
-    return posts.map(post => {
-      console.log("made something");
-      return (
-        <img
-          key={post.id}
-          alt=""
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf_SC-wdYH8nWAZJwcD4b_a3KQu8hbomXnJC3RN7oMF1Dd35kq"
-        />
-      );
+    let posts = this.props.postArray.filter(post => {
+      return post.mod_id == this.props.mod_id;
     });
+
+    return (
+      <div className="post-array-container">
+        {posts.map(post => {
+          return (
+            <div className="content-wrapper">
+              <PostIt key={post.id} content={post.content} />
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   render() {
     return (
-      <div className="ui mods-masthead">
+      <div className="ui">
         <h1 className="mod-name">{`Mod ${this.props.mod_id}`}</h1>
         List of posts
-        <div>{this.showPostArray()}</div>
+        <div className="post-container">{this.showPostArray()}</div>
       </div>
     );
   }

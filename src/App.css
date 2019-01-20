@@ -48,9 +48,53 @@
 .mods-masthead {
   background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/kG-5Wkc/new-york-city-manhattan-night-skyline_h50zrwtq__F0000.png") !important;
   background-size: cover !important;
+  background-image: url("/your-dir/your_image.jpg");
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .mod-name {
   color: white;
   text-align: center;
+}
+
+.post-container {
+  height: auto;
+  margin-left: 40px;
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  display: inline-block;
+}
+
+.post-wrapper {
+  width: 350px;
+  height: 350px;
+  position: relative;
+}
+
+.content-wrapper img {
+  position: absolute;
+  width: 100%;
+}
+
+.post-content {
+  position: absolute;
+  width: 67%;
+  margin-top: 15%;
+  margin-left: 17%;
+}
+
+.post-content p {
+  text-align: center;
+  font-size: 11pt;
+  word-wrap: break-word;
+}
+
+.post-array-container {
+  float: left;
 }

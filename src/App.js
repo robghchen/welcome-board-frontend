@@ -66,7 +66,6 @@ class App extends Component {
           <Route
             path="/mod/:id"
             render={RouterProps => {
-              console.log(RouterProps);
               return (
                 <ModShowPage
                   mod_id={RouterProps.match.params.id}
