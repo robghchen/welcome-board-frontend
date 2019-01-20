@@ -18,7 +18,7 @@ class App extends Component {
       current_mod: 0,
       // please do not change the snake case
       currentUser: {
-        id: "",
+        id: 0,
         full_name: "",
         // password: "",
         mod_id: 0
@@ -232,7 +232,13 @@ class App extends Component {
     //need to remove local storage token
     localStorage.removeItem("token");
     this.setState({
-      currentUser: {}
+      currentUser: {
+        id: 0,
+        full_name: "",
+        mod_id: 0
+      },
+      isUserLoggedIn: false,
+      token: ""
     });
     this.props.history.push("/");
   };
