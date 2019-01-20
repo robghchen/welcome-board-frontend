@@ -67,7 +67,12 @@ class App extends Component {
         />
 
         <Switch>
-          <Route path="/home" component={MainPage} />
+          <Route
+            path="/home"
+            render={() => {
+              return <MainPage addPost={this.addNewPost} />;
+            }}
+          />
           <Route
             path="/mod/:id"
             render={RouterProps => {
@@ -112,6 +117,10 @@ class App extends Component {
       </div>
     );
   }
+
+  addNewPost = () => {
+    console.log("activated addNewPost function.");
+  };
 
   updateHandler(currentUser) {
     this.setState({ currentUser });
