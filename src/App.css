@@ -44,3 +44,13 @@
 .mod-link-parent {
   text-align: center;
 }
+
+.mods-masthead {
+  background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/kG-5Wkc/new-york-city-manhattan-night-skyline_h50zrwtq__F0000.png") !important;
+  background-size: cover !important;
+}
+
+.mod-name {
+  color: white;
+  text-align: center;
+}

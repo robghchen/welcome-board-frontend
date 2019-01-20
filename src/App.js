@@ -39,7 +39,9 @@ class App extends Component {
       .then(users => this.setState({ users }));
     fetch("http://localhost:3000/api/v1/posts")
       .then(resp => resp.json())
-      .then(posts => this.setState({ posts }));
+      .then(posts => {
+        this.setState({ posts });
+      });
 
     let token = localStorage.getItem("token");
     fetch("http://localhost:3000/api/v1/current_user", {
@@ -53,7 +55,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
 
     return (
       <div>
@@ -65,7 +67,12 @@ class App extends Component {
             path="/mod/:id"
             render={RouterProps => {
               console.log(RouterProps);
-              return <ModShowPage mod_id={RouterProps.match.params.id} />;
+              return (
+                <ModShowPage
+                  mod_id={RouterProps.match.params.id}
+                  postArray={this.state.posts}
+                />
+              );
             }}
           />
           <Route
