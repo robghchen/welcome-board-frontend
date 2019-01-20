@@ -27,7 +27,7 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div className="ui card">
+      <div id="signup-form" className="ui card form">
         <h2>Sign Up</h2>
         <Route
           path="/signup"
@@ -71,8 +71,7 @@ class SignUpForm extends Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
-                  <br />
-                  <input type="submit" className="button" value="Submit" />
+                  <input type="submit" className="submit button" value="Submit" />
                 </form>
               </div>
             );

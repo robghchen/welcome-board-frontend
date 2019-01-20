@@ -43,15 +43,17 @@ class App extends Component {
         this.setState({ posts });
       });
 
-    let token = localStorage.getItem("token");
-    fetch("http://localhost:3000/api/v1/current_user", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Action: "application/json",
-        Authorization: `${token}`
-      }
-    });
+    if (this.state.isUserLoggedIn) {
+      let token = localStorage.getItem("token");
+      fetch("http://localhost:3000/api/v1/current_user", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Action: "application/json",
+          Authorization: `${token}`
+        }
+      });
+    }
   }
 
   render() {
@@ -59,7 +61,10 @@ class App extends Component {
 
     return (
       <div>
-        <NavBar isUserLoggedIn={this.state.isUserLoggedIn} />
+        <NavBar
+          isUserLoggedIn={this.state.isUserLoggedIn}
+          logout={this.logout}
+        />
 
         <Switch>
           <Route path="/home" component={MainPage} />
@@ -194,6 +199,11 @@ class App extends Component {
           }
         });
       });
+  };
+
+  logout = () => {
+    //need to remove local storage token
+    this.props.history.push("/");
   };
 }
 

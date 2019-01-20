@@ -1,3 +1,7 @@
+btn {
+  border-radius: 2px;
+}
+
 .App {
   text-align: center;
 }
@@ -97,4 +101,39 @@
 
 .post-array-container {
   float: left;
+}
+
+.form-control {
+  width: 95%;
+}
+
+.submit.button {
+  position: relative;
+  margin-top: 1em;
+  margin-left: 10em;
+  border-radius: 2px;
+}
+
+#login-form {
+  position: relative;
+  margin-top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
+}
+
+#signup-form {
+  position: relative;
+  margin-top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
+}
+
+#edit-profile-form {
+  position: relative;
+  margin-top: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3em;
 }

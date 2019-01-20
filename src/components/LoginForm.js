@@ -25,7 +25,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="ui card">
+      <div id="login-form" className="ui card form">
         <h2>Login</h2>
         <Route
           path="/login"
@@ -55,7 +55,7 @@ class LoginForm extends Component {
                     onChange={this.changeHandler}
                   />
                   <br />
-                  <input type="submit" className="button" value="Submit" />
+                  <input type="submit" className="submit button" value="Submit" />
                 </form>
               </div>
             );
