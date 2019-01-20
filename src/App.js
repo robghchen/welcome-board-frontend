@@ -170,7 +170,7 @@ class App extends Component {
   submitSignUpHandler(userInfo, event) {
     event.preventDefault();
     this.createUser(userInfo);
-    this.props.history.push("/");
+    this.props.history.push("/home");
   }
 
   createUser = userInfo => {
