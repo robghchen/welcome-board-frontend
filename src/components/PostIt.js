@@ -6,10 +6,7 @@ class PostIt extends React.Component {
       <div className="post-wrapper">
         <img alt="" src={require("./post_it_pic.png")} />
         <div className="post-content">
-          <p>
-            {this.props.content +
-              "fvyfcytrtdththvthyvthbtbyhvtcbrhegrjhegwegwfjyhvggGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGfjyhvggGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGytjftybdtbrdgvHKFNBJFTHFVctubvtycrxbtyvtcrxbtrvydrtyrthdjjvyxthcrgtsyvbyjjctvh"}
-          </p>
+          <p>{this.props.content}</p>
         </div>
       </div>
     );

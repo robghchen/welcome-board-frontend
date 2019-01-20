@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PostIt from "./PostIt";
+import NewPostForm from "./NewPostForm";
 
 class ModShowPage extends Component {
   state = {
@@ -25,11 +26,15 @@ class ModShowPage extends Component {
   };
 
   render() {
+    const show = { display: this.props.loggedInUser ? "block" : "none" };
+    console.log(this.props);
     return (
       <div className="ui">
         <h1 className="mod-name">{`Mod ${this.props.mod_id}`}</h1>
-        List of posts
         <div className="post-container">{this.showPostArray()}</div>
+        <div style={show}>
+          <NewPostForm addPost={this.props.addPost} mod={this.props.mod_id} />
+        </div>
       </div>
     );
   }

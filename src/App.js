@@ -19,13 +19,12 @@ class App extends Component {
       currentUser: {
         id: "",
         fullName: "",
-        // password: "",
-        modId: 0
+        password: "",
+        mod_id: 0
       },
       mods: [],
       posts: [],
-      users: [],
-      token: ""
+      users: []
     };
 
     this.updateHandler = this.updateHandler.bind(this);
@@ -44,12 +43,6 @@ class App extends Component {
         this.setState({ posts });
       });
 
-    // Need to think about this block of code because
-    // it will never get executed. ComponentDidMount only
-    // execute once, and when it is invoked,
-    // the value of this.state.isUserLoggedIn is going to be
-    // false.
-
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
       fetch("http://localhost:3000/api/v1/current_user", {
@@ -64,7 +57,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.token);
+    console.log(this.state.currentUser);
 
     return (
       <div>
@@ -74,12 +67,7 @@ class App extends Component {
         />
 
         <Switch>
-          <Route
-            path="/home"
-            render={() => {
-              return <MainPage addPost={this.addNewPost} />;
-            }}
-          />
+          <Route path="/home" component={MainPage} />
           <Route
             path="/mod/:id"
             render={RouterProps => {
@@ -87,6 +75,8 @@ class App extends Component {
                 <ModShowPage
                   mod_id={RouterProps.match.params.id}
                   postArray={this.state.posts}
+                  addPost={this.addNewPost}
+                  loggedInUser={this.state.isUserLoggedIn}
                 />
               );
             }}
@@ -125,20 +115,38 @@ class App extends Component {
     );
   }
 
-  addNewPost = () => {
-    console.log("activated addNewPost function.");
+  addNewPost = (e, input, mod) => {
+    e.preventDefault();
+
+    if (parseInt(mod) > this.state.currentUser.mod_id) {
+      alert("You can only submit posts for mods you are in or have completed.");
+    } else {
+      fetch("http://localhost:3000/api/v1/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          content: input,
+          mod_id: mod
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        });
+    }
   };
 
   updateHandler(currentUser) {
     this.setState({ currentUser });
-    console.log(this.token)
 
     fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `${this.state.token}`
+        Accept: "application/json"
       },
       body: JSON.stringify({
         full_name: currentUser.full_name,
@@ -156,7 +164,6 @@ class App extends Component {
           }
         })
       );
-      this.props.history.push("/")
   }
 
   submitSignUpHandler(userInfo, event) {
@@ -190,9 +197,8 @@ class App extends Component {
   submitLoginHandler = (userInfo, event) => {
     event.preventDefault();
     this.getUser(userInfo);
-    this.props.history.push("/");
+    this.props.history.push("/home");
   };
-
 
   getUser = userInfo => {
     fetch("http://localhost:3000/api/v1/login", {
@@ -216,15 +222,13 @@ class App extends Component {
             full_name: res.user.full_name,
             password: "",
             mod_id: res.user.mod_id
-          },
-          token: localStorage.getItem("token")
+          }
         });
       });
   };
 
   logout = () => {
     //need to remove local storage token
-
     this.props.history.push("/");
   };
 }
