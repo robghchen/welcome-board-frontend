@@ -18,6 +18,7 @@ class EditProfileForm extends Component {
     }
 
     render(){
+        console.log("editprofileform", this.props)
         return (
             <Fragment>
                 this.props.isUserLoggedIn ? (<form onSubmit={this.submitHandler}>

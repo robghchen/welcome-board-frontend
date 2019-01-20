@@ -65,6 +65,7 @@ class App extends Component {
             render={() => {
               return (
                 <EditProfileForm
+                  isUserLoggedIn={this.state.isUserLoggedIn}
                   currentUser={this.state.currentUser}
                   updateHandler={this.updateHandler}
                   mods={this.state.mods}
@@ -75,9 +76,7 @@ class App extends Component {
           <Route
             path="/login"
             render={() => {
-              return (
-                <LoginForm submitLoginHandler={this.submitLoginHandler} />
-              );
+              return <LoginForm submitLoginHandler={this.submitLoginHandler} />;
             }}
           />
           <Route
@@ -111,13 +110,15 @@ class App extends Component {
       })
     })
       .then(resp => resp.json())
-      .then(user => this.setState({
-        currentUser: {
-          id: user.id,
-          full_name: user.full_name,
-          mod_id: user.mod_id
-        }
-      }));
+      .then(user =>
+        this.setState({
+          currentUser: {
+            id: user.id,
+            full_name: user.full_name,
+            mod_id: user.mod_id
+          }
+        })
+      );
   }
 
   submitSignUpHandler(userInfo, event) {
@@ -152,7 +153,7 @@ class App extends Component {
     event.preventDefault();
     this.getUser(userInfo);
     this.props.history.push("/");
-  }
+  };
 
   getUser = userInfo => {
     fetch("http://localhost:3000/api/v1/login", {
