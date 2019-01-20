@@ -3,8 +3,8 @@ import { Route, Switch } from "react-router-dom";
 
 class LoginForm extends Component {
   state = {
-      loginFullName: "",
-      loginPassword: ""
+    loginFullName: "",
+    loginPassword: ""
   };
 
   changeHandler = event => {
@@ -26,7 +26,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div className="ui card">
-      <h2>Login</h2>
+        <h2>Login</h2>
         <Route
           path="/login"
           render={() => {

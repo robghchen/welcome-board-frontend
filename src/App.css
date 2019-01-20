@@ -36,3 +36,11 @@
   top: 0px;
   right: 0px;
 }
+
+.mod-link {
+  display: inline-block;
+}
+
+.mod-link-parent {
+  text-align: center;
+}

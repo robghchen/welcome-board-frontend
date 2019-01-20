@@ -3,14 +3,14 @@ import { Route, Switch } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
-      signupFullName: "",
-      password: "",
-      mod_id: 1
+    signupFullName: "",
+    password: "",
+    mod_id: 1
   };
 
   changeHandler = event => {
     this.setState({
-      [event.target.name] : event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -27,9 +27,8 @@ class SignUpForm extends Component {
 
   render() {
     return (
-
       <div className="ui card">
-      <h2>Sign Up</h2>
+        <h2>Sign Up</h2>
         <Route
           path="/signup"
           render={() => {

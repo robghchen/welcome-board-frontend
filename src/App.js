@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isUserLoggedIn: true,
+      isUserLoggedIn: false,
       current_mod: 0,
       currentUser: {
         id: "",
