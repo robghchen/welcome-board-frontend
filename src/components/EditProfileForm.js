@@ -9,12 +9,13 @@ class EditProfileForm extends Component {
             
             id: this.props.currentUser.id,
             full_name: this.props.currentUser.full_name,
-            password: this.props.currentUser.password,
+            password: "",
             mod_id: this.props.currentUser.mod_id
     
-    }
+    }   
 
         this.submitHandler = this.submitHandler.bind(this);
+        this.changeHandler = this.changeHandler.bind(this);
     }
 
     render(){
@@ -24,7 +25,7 @@ class EditProfileForm extends Component {
                     <label htmlFor="full_name">Full Name: </label>
                     <input type="text" name="full_name" onChange={this.changeHandler} value={this.state.full_name} />
                     <label htmlFor="password">Password: </label>
-                    <input type="password" name="password" id="password" value={this.state.password} onChange={this.changeHandler} />
+                    <input type="password" name="password" placeholder="type new password" id="password" value={this.state.password} onChange={this.changeHandler} />
                     <label htmlFor="mod">Mod #: </label>
                     <select name="mod_id" id="mod_id" onChange={this.changeHandler} value={this.state.mod_id}>
                         {this.getMods()}
@@ -45,11 +46,11 @@ class EditProfileForm extends Component {
         e.target.reset()
     }
 
-    changeHandler = event => {
+    changeHandler(event) {
         this.setState({
             [event.target.name]:  event.target.value
         });
-      };
+    };
 }
 
 export default EditProfileForm; 
