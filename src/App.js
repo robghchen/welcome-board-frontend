@@ -143,7 +143,7 @@ class App extends Component {
       .then(res => {
         localStorage.setItem("token", res.jwt);
         this.setState({
-          user: res.user
+          currentUser: res.user
         });
       });
   };
