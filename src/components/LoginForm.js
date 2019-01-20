@@ -3,11 +3,8 @@ import { Route, Switch } from "react-router-dom";
 
 class LoginForm extends Component {
   state = {
-    currentUser: {
-      fullName: "",
-      password: ""
-    },
-    value: ""
+      loginFullName: "",
+      loginPassword: ""
   };
 
   changeHandler = event => {
@@ -19,16 +16,17 @@ class LoginForm extends Component {
   submitLoginHandler = event => {
     event.preventDefault();
 
-    this.props.submitLoginHandler(this.state);
+    this.props.submitLoginHandler(this.state, event);
     this.setState({
-      fullName: "",
-      password: ""
+      loginFullName: "",
+      loginPassword: ""
     });
   };
 
   render() {
     return (
       <div className="ui card">
+      <h2>Login</h2>
         <Route
           path="/login"
           render={() => {
@@ -39,10 +37,10 @@ class LoginForm extends Component {
                   <input
                     id="full-name"
                     className="form-control"
-                    name="full-name"
+                    name="loginFullName"
                     type="text"
                     placeholder="Enter your full name"
-                    value={this.state.currentUser.fullName}
+                    value={this.state.loginFullName}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -50,10 +48,10 @@ class LoginForm extends Component {
                   <input
                     id="password"
                     className="form-control"
-                    name="password"
-                    type="text"
+                    name="loginPassword"
+                    type="password"
                     placeholder="Enter a password"
-                    value={this.state.currentUser.password}
+                    value={this.state.loginPassword}
                     onChange={this.changeHandler}
                   />
                   <br />

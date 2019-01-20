@@ -30,3 +30,9 @@
     transform: rotate(360deg);
   }
 }
+
+.navright {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
