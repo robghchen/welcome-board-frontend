@@ -15,19 +15,32 @@ class App extends Component {
 
     this.state = {
       isUserLoggedIn: true,
-      current_mod: 3,
+      current_mod: 0,
       currentUser: {
+        id: "",
         fullName: "",
         password: "",
         modId: 0
       },
-      mods: []
+      mods: [],
+      posts: [],
+      users: []
     };
 
     this.updateHandler = this.updateHandler.bind(this);
   }
 
-  handleModSelect = () => {};
+  componentDidMount() {
+    fetch("http://localhost:3000/api/v1/mods")
+      .then(resp => resp.json())
+      .then(mods => this.setState({ mods }));
+    fetch("http://localhost:3000/api/v1/users")
+      .then(resp => resp.json())
+      .then(users => this.setState({ users }));
+    fetch("http://localhost:3000/api/v1/posts")
+      .then(resp => resp.json())
+      .then(posts => this.setState({ posts }));
+  }
 
   render() {
     return (

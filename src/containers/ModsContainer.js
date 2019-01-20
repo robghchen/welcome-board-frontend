@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Grid, Image } from "semantic-ui-react";
 
 class ModsContainer extends React.Component {
   constructor() {
@@ -10,47 +11,38 @@ class ModsContainer extends React.Component {
 
   render() {
     return (
-      <div className="ui grid cards">
-        <h4>Mods Container</h4>
-
-        <div className="three centered row">
-          <div className="column" onClick={this.handleClick}>
+      <Grid>
+        <Grid.Row columns={3}>
+          <Grid.Column>
             <Link to={"/mod/1"}>
-              <img
-                alt=""
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q"
-              />
+              <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q" />
             </Link>
-          </div>
-          <div className="column">
-            <img
-              alt=""
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q"
-            />
-          </div>
-          <div className="column">
-            <img
-              alt=""
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q"
-            />
-          </div>
-        </div>
+          </Grid.Column>
+          <Grid.Column>
+            <Link to={"/mod/2"}>
+              <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q" />
+            </Link>
+          </Grid.Column>
+          <Grid.Column>
+            <Link to={"/mod/3"}>
+              <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q" />
+            </Link>
+          </Grid.Column>
+        </Grid.Row>
 
-        <div className="two centered row">
-          <div className="column">
-            <img
-              alt=""
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q"
-            />
-          </div>
-          <div className="column">
-            <img
-              alt=""
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q"
-            />
-          </div>
-        </div>
-      </div>
+        <Grid.Row columns={3}>
+          <Grid.Column>
+            <Link to={"/mod/4"}>
+              <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q" />
+            </Link>
+          </Grid.Column>
+          <Grid.Column>
+            <Link to={"/mod/5"}>
+              <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5rZfaVE5XP0nD_kAIq1GpngctlJ4cmq09MbfWOMDAzRLc11F-Q" />
+            </Link>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

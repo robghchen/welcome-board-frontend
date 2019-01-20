@@ -6,7 +6,11 @@ class ModShowPage extends Component {
   };
 
   render() {
-    return <div>{`This is show page for mod ${this.props.mod_id}`}</div>;
+    return (
+      <div className="ui">
+        <h1 className="ui title">{`Mod ${this.props.mod_id}`}</h1>
+      </div>
+    );
   }
 }
 
