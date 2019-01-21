@@ -25,7 +25,8 @@ class App extends Component {
       },
       mods: [],
       posts: [],
-      users: []
+      users: [],
+      token: ""
     };
 
     this.updateHandler = this.updateHandler.bind(this);
@@ -128,17 +129,19 @@ class App extends Component {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `${token}`
+          Authorization: this.state.token
         },
         body: JSON.stringify({
           content: input,
-          mod_id: mod,
+          mod_id: parseInt(mod),
           user_id: this.state.currentUser.id
         })
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          let newArr = [...this.state.posts];
+          newArr.push(data);
+          this.setState({ posts: newArr });
         });
     }
   };
@@ -150,7 +153,8 @@ class App extends Component {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        Authorization: this.state.token
       },
       body: JSON.stringify({
         full_name: currentUser.full_name,
@@ -221,6 +225,7 @@ class App extends Component {
         localStorage.setItem("token", res.jwt);
         this.setState({
           isUserLoggedIn: true,
+          token: localStorage.getItem("token"),
           currentUser: {
             id: res.user.id,
             full_name: res.user.full_name,
