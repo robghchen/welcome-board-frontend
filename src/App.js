@@ -194,7 +194,10 @@ class App extends Component {
         mod_id: userInfo.mod_id
       })
     })
-      .then(res => res.json())
+      .then(res => {
+        if(res.error === 406) throw new Error(res.status)
+        else return res.json()
+      })
       .then(res => {
         localStorage.setItem("token", res.jwt);
         this.setState({
@@ -207,6 +210,10 @@ class App extends Component {
             mod_id: res.user.mod_id
           }
         });
+      })
+      .catch(error => {
+        this.props.history.push("/signup");
+        alert("Account already exists!");
       });
   };
 

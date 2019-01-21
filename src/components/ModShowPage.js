@@ -17,7 +17,8 @@ class ModShowPage extends Component {
         {posts.map(post => {
           return (
             <div key={post.id} className="content-wrapper">
-              <PostIt content={post.content} />
+              <PostIt post={post} />
+              {/* <PostIt content={post.content} /> */}
             </div>
           );
         })}
