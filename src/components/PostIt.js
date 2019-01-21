@@ -7,9 +7,7 @@ class PostIt extends React.Component {
 
     this.state = {
       markedForDeletion: false,
-      likes: this.props.likes.filter(
-        like => like.post_id === this.props.post.id
-      ).length
+      likes: ""
     };
   }
 
@@ -63,7 +61,7 @@ class PostIt extends React.Component {
           ) : (
             <p>{this.props.post.content}</p>
           )}
-          <div>
+          <div className="likes">
             <span>{this.state.likes} </span>
             <span
               className="pointer"
