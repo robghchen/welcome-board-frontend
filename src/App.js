@@ -81,6 +81,7 @@ class App extends Component {
                   loggedInUser={this.state.isUserLoggedIn}
                   currentUser={this.state.currentUser}
                   deleteHandler={this.deleteHandler.bind(this)}
+                  editPostHandler={this.editPostHandler}
                 />
               );
             }}
@@ -270,6 +271,33 @@ class App extends Component {
     const posts = [...this.state.posts].filter(post => post.id !== id);
     this.setState({ posts });
   }
+
+  editPostHandler = (id, content) => {
+    console.log(id, content)
+    fetch(`http://localhost:3000/api/v1/posts/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: this.state.token
+      },
+      body: JSON.stringify({
+        content
+      })
+
+    })
+      .then(res=>res.json())
+      .then(data => {
+        let newArr = [...this.state.posts]
+          newArr = newArr.map((post)=>{
+          if(post.id===id){
+            return data
+          }else{ return post}
+        })
+        this.setState({ posts: newArr}) 
+      })
+  }
+
 }
 
 export default withRouter(App);

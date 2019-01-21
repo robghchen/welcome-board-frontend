@@ -1,4 +1,5 @@
 import React from "react";
+import EditPostForm from "./EditPostForm";
 
 class PostIt extends React.Component {
   constructor(props){
@@ -23,9 +24,15 @@ class PostIt extends React.Component {
         <div className="post-content">
           {this.props.post.user_id === this.props.currentUser.id ? <span className="delete pointer" onClick={this.deleteHandler.bind(this)}>x</span> : null}
           <p>{this.props.post.content}</p>
+          <EditPostForm post={this.props.post} editPostHandler={this.props.editPostHandler}/>
         </div>
       </div>
     );
+  }
+
+  editPostHandler = (e) => {
+    e.preventDefault()
+    this.props.editPostHandler()
   }
 
   deleteHandler(){
