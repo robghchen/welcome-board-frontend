@@ -17,7 +17,7 @@ class ModShowPage extends Component {
         {posts.map(post => {
           return (
             <div key={post.id} className="content-wrapper">
-              <PostIt content={post.content} />
+              <PostIt post={post} currentUser={this.props.currentUser} deleteHandler={this.props.deleteHandler} editPostHandler={this.props.editPostHandler}/>
             </div>
           );
         })}
@@ -27,7 +27,6 @@ class ModShowPage extends Component {
 
   render() {
     const show = { display: this.props.loggedInUser ? "block" : "none" };
-    console.log(this.props);
     return (
       <div className="ui">
         <h1 className="mod-name">{`Mod ${this.props.mod_id}`}</h1>
@@ -38,6 +37,8 @@ class ModShowPage extends Component {
       </div>
     );
   }
+
+
 }
 
 export default ModShowPage;
