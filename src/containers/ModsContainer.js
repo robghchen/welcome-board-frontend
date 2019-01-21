@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, withRouter } from "react-router-dom";
+import { Link, Switch, Route, withRouter } from "react-router-dom";
 import { Grid, Image } from "semantic-ui-react";
 import ModShowPage from "../components/ModShowPage"
 
@@ -51,7 +51,8 @@ class ModsContainer extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
+        <Switch>
       <Route
             path="/mod/:id"
             render={RouterProps => {
@@ -64,7 +65,7 @@ class ModsContainer extends React.Component {
                 />
               );
             }}
-          />
+          /></Switch>
       <Grid>
         <Grid.Row columns={3}>
           <Grid.Column>
@@ -112,7 +113,7 @@ class ModsContainer extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      </React.Fragment>
+      </div>
     );
   }
 }
