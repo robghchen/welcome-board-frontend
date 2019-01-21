@@ -181,6 +181,7 @@ class App extends Component {
   };
 
   createUser = userInfo => {
+    console.log("userinfo", userInfo);
     fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
@@ -193,14 +194,20 @@ class App extends Component {
         mod_id: userInfo.mod_id
       })
     })
-      .then(res => res.json())
-      .then(res => console.log("res", res))
-      .then(res => {
-        localStorage.setItem("token", res.jwt);
-        this.setState({
-          currentUser: res.user
-        });
-      })
+    .then(res => res.json())
+    .then(res => {
+      localStorage.setItem("token", res.jwt);
+      this.setState({
+        isUserLoggedIn: true,
+        token: localStorage.getItem("token"),
+        currentUser: {
+          id: res.user.id,
+          full_name: res.user.full_name,
+          password: "",
+          mod_id: res.user.mod_id
+        }
+      });
+    });
   };
 
   submitLoginHandler = (userInfo, event) => {
