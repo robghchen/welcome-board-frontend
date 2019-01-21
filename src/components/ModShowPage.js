@@ -8,16 +8,23 @@ class ModShowPage extends Component {
   };
 
   showPostArray = () => {
-    let posts = this.props.postArray.filter(post => {
-      return post.mod_id == this.props.mod_id;
-    });
+    let posts = this.props.postArray
+      .filter(post => {
+        return post.mod_id == this.props.mod_id;
+      })
+      .reverse();
 
     return (
       <div className="post-array-container">
         {posts.map(post => {
           return (
             <div key={post.id} className="content-wrapper">
-              <PostIt post={post} currentUser={this.props.currentUser} deleteHandler={this.props.deleteHandler} editPostHandler={this.props.editPostHandler}/>
+              <PostIt
+                post={post}
+                currentUser={this.props.currentUser}
+                deleteHandler={this.props.deleteHandler}
+                editPostHandler={this.props.editPostHandler}
+              />
             </div>
           );
         })}
@@ -37,8 +44,6 @@ class ModShowPage extends Component {
       </div>
     );
   }
-
-
 }
 
 export default ModShowPage;
