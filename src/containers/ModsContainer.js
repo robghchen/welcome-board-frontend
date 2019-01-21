@@ -1,16 +1,70 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 import { Grid, Image } from "semantic-ui-react";
+import ModShowPage from "../components/ModShowPage"
 
 class ModsContainer extends React.Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      posts: []
+    };
   }
+
+  componentDidMount() {
+    fetch("http://localhost:3000/api/v1/posts")
+      .then(resp => resp.json())
+      .then(posts => {
+        this.setState({ posts });
+      });
+  }
+
+  addNewPost = (e, input, mod) => {
+    e.preventDefault();
+
+    if (parseInt(mod) > this.state.currentUser.mod_id) {
+      alert("You can only submit posts for mods you are in or have completed.");
+    } else {
+      let token = localStorage.getItem("token");
+      fetch("http://localhost:3000/api/v1/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: this.state.token
+        },
+        body: JSON.stringify({
+          content: input,
+          mod_id: parseInt(mod),
+          user_id: this.state.currentUser.id
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          let newArr = [...this.state.posts];
+          newArr.push(data);
+          this.setState({ posts: newArr });
+        });
+    }
+  };
 
   render() {
     return (
+      <React.Fragment>
+      <Route
+            path="/mod/:id"
+            render={RouterProps => {
+              return (
+                <ModShowPage
+                  mod_id={RouterProps.match.params.id}
+                  postArray={this.state.posts}
+                  addPost={this.addNewPost}
+                  loggedInUser={this.props.isUserLoggedIn}
+                />
+              );
+            }}
+          />
       <Grid>
         <Grid.Row columns={3}>
           <Grid.Column>
@@ -58,8 +112,9 @@ class ModsContainer extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      </React.Fragment>
     );
   }
 }
 
-export default ModsContainer;
+export default withRouter(ModsContainer);
