@@ -60,12 +60,12 @@ class App extends Component {
 
   render() {
     console.log(this.state.currentUser);
-
     return (
       <div>
         <NavBar
           isUserLoggedIn={this.state.isUserLoggedIn}
           logout={this.logout}
+          currentPath={this.props.location.pathname}
         />
 
         <Switch>
@@ -248,7 +248,7 @@ class App extends Component {
       isUserLoggedIn: false,
       token: ""
     });
-    this.props.history.push("/");
+    this.props.history.push("/home");
   };
 }
 

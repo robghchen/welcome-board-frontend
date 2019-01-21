@@ -6,21 +6,28 @@ class NavBar extends Component {
     return (
       <div className="ui menu">
         <React.Fragment>
-          <Link to={"/mod/1"} className="item">
-            Mod 1
+          <Link to={"/home"} className="item">
+            Welcome Board
           </Link>
-          <Link to={"/mod/2"} className="item">
-            Mod 2
-          </Link>
-          <Link to={"/mod/3"} className="item">
-            Mod 3
-          </Link>
-          <Link to={"/mod/4"} className="item">
-            Mod 4
-          </Link>
-          <Link to={"/mod/5"} className="item">
-            Mod 5
-          </Link>
+          {this.props.currentPath === "/home" ? null : (
+            <React.Fragment>
+              <Link to={"/mod/1"} className="item">
+                Mod 1
+              </Link>
+              <Link to={"/mod/2"} className="item">
+                Mod 2
+              </Link>
+              <Link to={"/mod/3"} className="item">
+                Mod 3
+              </Link>
+              <Link to={"/mod/4"} className="item">
+                Mod 4
+              </Link>
+              <Link to={"/mod/5"} className="item">
+                Mod 5
+              </Link>
+            </React.Fragment>
+          )}
         </React.Fragment>
         {this.props.isUserLoggedIn ? (
           <span className="ui menu navright">
@@ -30,7 +37,7 @@ class NavBar extends Component {
             <span className="item" onClick={this.props.logout}>
               Logout
             </span>
-            </span>
+          </span>
         ) : (
           <span className="ui menu navright">
             <Link to={"/login"} className="item">
