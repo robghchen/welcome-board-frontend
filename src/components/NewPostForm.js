@@ -9,15 +9,18 @@ class NewPostForm extends Component {
     this.setState({ input: e.target.value });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.addPost(this.state.input, this.props.mod);
+    this.setState({
+      input: ""
+    });
+  };
+
   render() {
     return (
       <div>
-        <form
-          className="ui card"
-          onSubmit={e =>
-            this.props.addPost(e, this.state.input, this.props.mod)
-          }
-        >
+        <form className="ui card" onSubmit={this.handleSubmit}>
           Write a note to a previous mod.
           <br />
           <input

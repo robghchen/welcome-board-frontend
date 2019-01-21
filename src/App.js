@@ -117,9 +117,7 @@ class App extends Component {
     );
   }
 
-  addNewPost = (e, input, mod) => {
-    e.preventDefault();
-
+  addNewPost = (input, mod) => {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
       alert("You can only submit posts for mods you are in or have completed.");
     } else {
