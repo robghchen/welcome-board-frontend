@@ -118,6 +118,10 @@ btn {
   cursor: pointer;
 }
 
+.delete {
+  float: right;
+}
+
 #login-form {
   position: relative;
   margin-top: 30%;

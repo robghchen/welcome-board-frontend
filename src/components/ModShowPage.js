@@ -17,7 +17,7 @@ class ModShowPage extends Component {
         {posts.map(post => {
           return (
             <div key={post.id} className="content-wrapper">
-              <PostIt content={post.content} />
+              <PostIt post={post} currentUser={this.props.currentUser} deleteHandler={this.props.deleteHandler} />
             </div>
           );
         })}
@@ -38,6 +38,8 @@ class ModShowPage extends Component {
       </div>
     );
   }
+
+
 }
 
 export default ModShowPage;

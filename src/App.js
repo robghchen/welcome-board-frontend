@@ -79,6 +79,8 @@ class App extends Component {
                   postArray={this.state.posts}
                   addPost={this.addNewPost}
                   loggedInUser={this.state.isUserLoggedIn}
+                  currentUser={this.state.currentUser}
+                  deleteHandler={this.deleteHandler.bind(this)}
                 />
               );
             }}
@@ -263,6 +265,11 @@ class App extends Component {
     });
     this.props.history.push("/home");
   };
+
+  deleteHandler(id){
+    const posts = [...this.state.posts].filter(post => post.id !== id);
+    this.setState({ posts });
+  }
 }
 
 export default withRouter(App);
