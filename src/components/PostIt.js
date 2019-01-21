@@ -59,7 +59,7 @@ class PostIt extends React.Component {
           ) : (
             <p>{this.props.post.content}</p>
           )}
-          <div><span>{this.state.likes} </span><span className="pointer" onClick={this.likesHandler.bind(this)}>🥰</span></div>
+          <div className="likes"><span>{this.state.likes} </span><span className="pointer" onClick={this.likesHandler.bind(this)}>😘</span></div>
         </div>
       </div>
     );
