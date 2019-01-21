@@ -3,7 +3,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import MainPage from "./components/MainPage";
 import { Route, Switch, withRouter } from "react-router-dom";
-import ModShowPage from "./components/ModShowPage";
+import ModsContainer from "./containers/ModsContainer";
 import EditProfileForm from "./components/EditProfileForm";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
@@ -24,7 +24,6 @@ class App extends Component {
         mod_id: 0
       },
       mods: [],
-      posts: [],
       users: [],
       token: ""
     };
@@ -39,11 +38,6 @@ class App extends Component {
     fetch("http://localhost:3000/api/v1/users")
       .then(resp => resp.json())
       .then(users => this.setState({ users }));
-    fetch("http://localhost:3000/api/v1/posts")
-      .then(resp => resp.json())
-      .then(posts => {
-        this.setState({ posts });
-      });
 
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
@@ -69,20 +63,14 @@ class App extends Component {
         />
 
         <Switch>
-          <Route path="/home" component={MainPage} />
-          <Route
-            path="/mod/:id"
-            render={RouterProps => {
-              return (
-                <ModShowPage
-                  mod_id={RouterProps.match.params.id}
-                  postArray={this.state.posts}
-                  addPost={this.addNewPost}
-                  loggedInUser={this.state.isUserLoggedIn}
-                />
-              );
-            }}
-          />
+          <Route path="/home" render={() => {
+            return (
+              <ModsContainer
+              loggedInUser={this.state.isUserLoggedIn}
+              />
+            )
+          }} />
+          
           <Route
             path="/editProfile"
             render={() => {
@@ -117,6 +105,7 @@ class App extends Component {
     );
   }
 
+<<<<<<< HEAD
   addNewPost = (input, mod) => {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
       alert("You can only submit posts for mods you are in or have completed.");
@@ -144,6 +133,8 @@ class App extends Component {
     }
   };
 
+=======
+>>>>>>> b0694efe07ed9e057cac23a2a8b4aaa35208ff52
   updateHandler(currentUser) {
     this.setState({ currentUser });
 
