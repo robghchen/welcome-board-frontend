@@ -25,7 +25,8 @@ class App extends Component {
       },
       mods: [],
       posts: [],
-      users: []
+      users: [],
+      token: ""
     };
 
     this.updateHandler = this.updateHandler.bind(this);
@@ -126,7 +127,8 @@ class App extends Component {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          Accept: "application/json",
+          Authorization: this.state.token
         },
         body: JSON.stringify({
           content: input,
@@ -147,7 +149,8 @@ class App extends Component {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        Authorization: this.state.token
       },
       body: JSON.stringify({
         full_name: currentUser.full_name,
@@ -218,6 +221,7 @@ class App extends Component {
         localStorage.setItem("token", res.jwt);
         this.setState({
           isUserLoggedIn: true,
+          token: localStorage.getItem("token"),
           currentUser: {
             id: res.user.id,
             full_name: res.user.full_name,
