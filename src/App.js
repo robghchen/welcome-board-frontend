@@ -26,6 +26,7 @@ class App extends Component {
       mods: [],
       posts: [],
       users: [],
+      likes: [],
       token: ""
     };
 
@@ -44,6 +45,11 @@ class App extends Component {
       .then(posts => {
         this.setState({ posts });
       });
+    fetch("http://localhost:3000/api/v1/likes")
+    .then(resp => resp.json())
+    .then(likes => {
+      this.setState({ likes });
+    });
 
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
@@ -94,6 +100,7 @@ class App extends Component {
                   currentUser={this.state.currentUser}
                   deleteHandler={this.deleteHandler.bind(this)}
                   editPostHandler={this.editPostHandler}
+                  likes={this.state.likes}
                 />
               );
             }}
