@@ -9,7 +9,7 @@ class ModShowPage extends Component {
 
   showPostArray = () => {
     let posts = this.props.postArray.filter(post => {
-      return post.mod_id == this.props.mod_id;
+      return post.mod_id === this.props.mod_id;
     });
 
     return (
@@ -27,6 +27,7 @@ class ModShowPage extends Component {
   };
 
   render() {
+    console.log(this.props.postArray);
     const show = { display: this.props.loggedInUser ? "block" : "none" };
     console.log(this.props);
     return (

@@ -11,7 +11,7 @@ class PostIt extends React.Component {
     this.deleteHandler = this.deleteHandler.bind(this);
   }
   componentWillUnmount(){
-    if(markedForDeletion) fetch(`http://localhost:3000/api/v1/posts/${this.props.post.id}`, {method: 'DELETE'})
+    if(this.state.markedForDeletion) fetch(`http://localhost:3000/api/v1/posts/${this.props.post.id}`, {method: 'DELETE'})
   }
   render() {
     return (
