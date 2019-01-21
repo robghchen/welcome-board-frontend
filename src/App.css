@@ -57,12 +57,12 @@ btn {
 }
 
 .mods-masthead {
-  background-image: url("https://new.graphicpanic.com/wp-content/uploads/2015/06/bulletin-board-background.jpg") !important;
-  background-size: cover !important;
+  background-image: url("./bulletin-board-background.jpg") !important;
+  /* background-size: cover !important; */
   /* background-image: url("/your-dir/your_image.jpg"); */
   min-height: 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
   background-position: center;
 }
 
