@@ -117,9 +117,7 @@ class App extends Component {
     );
   }
 
-  addNewPost = (e, input, mod) => {
-    e.preventDefault();
-
+  addNewPost = (input, mod) => {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
       alert("You can only submit posts for mods you are in or have completed.");
     } else {
@@ -194,20 +192,20 @@ class App extends Component {
         mod_id: userInfo.mod_id
       })
     })
-    .then(res => res.json())
-    .then(res => {
-      localStorage.setItem("token", res.jwt);
-      this.setState({
-        isUserLoggedIn: true,
-        token: localStorage.getItem("token"),
-        currentUser: {
-          id: res.user.id,
-          full_name: res.user.full_name,
-          password: "",
-          mod_id: res.user.mod_id
-        }
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem("token", res.jwt);
+        this.setState({
+          isUserLoggedIn: true,
+          token: localStorage.getItem("token"),
+          currentUser: {
+            id: res.user.id,
+            full_name: res.user.full_name,
+            password: "",
+            mod_id: res.user.mod_id
+          }
+        });
       });
-    });
   };
 
   submitLoginHandler = (userInfo, event) => {
@@ -229,8 +227,8 @@ class App extends Component {
       })
     })
       .then(res => {
-        if(res.status === 401) throw new Error(res.status)
-        else return res.json()
+        if (res.status === 401) throw new Error(res.status);
+        else return res.json();
       })
       .then(res => {
         localStorage.setItem("token", res.jwt);
@@ -245,7 +243,9 @@ class App extends Component {
           }
         });
       })
-      .catch(error => alert(`HTTP ERROR: ${error}, Unknown account or password!`));
+      .catch(error =>
+        alert(`HTTP ERROR: ${error}, Unknown account or password!`)
+      );
   };
 
   logout = () => {
