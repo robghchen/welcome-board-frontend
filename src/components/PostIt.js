@@ -7,17 +7,21 @@ class PostIt extends React.Component {
 
     this.state = {
       markedForDeletion: false,
-      likes: this.props.likes.filter(like => like.post_id === this.props.post.id).length
+      likes: this.props.likes.filter(
+        like => like.post_id === this.props.post.id
+      ).length
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     fetch("http://localhost:3000/api/v1/likes")
-    .then(resp => resp.json())
-    .then(likes => {
-      const postLikes = likes.filter(like => like.post_id === this.props.post.id).length
-      this.setState({ likes: postLikes });
-    });
+      .then(resp => resp.json())
+      .then(likes => {
+        const postLikes = likes.filter(
+          like => like.post_id === this.props.post.id
+        ).length;
+        this.setState({ likes: postLikes });
+      });
   }
 
   componentWillUnmount() {
@@ -27,13 +31,20 @@ class PostIt extends React.Component {
       });
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.likes < this.state.likes){
-      fetch('http://localhost:3000/api/v1/likes', {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.likes < this.state.likes) {
+      fetch("http://localhost:3000/api/v1/likes", {
         method: "POST",
-        headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: localStorage.getItem("token")},
-        body: JSON.stringify({ post_id: this.props.post.id, user_id: this.props.currentUser.id })
-      })
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: localStorage.getItem("token")
+        },
+        body: JSON.stringify({
+          post_id: this.props.post.id,
+          user_id: this.props.currentUser.id
+        })
+      });
     }
   }
 
@@ -59,15 +70,20 @@ class PostIt extends React.Component {
           ) : (
             <p>{this.props.post.content}</p>
           )}
-          <div className="likes"><span>{this.state.likes} </span><span className="pointer" onClick={this.likesHandler.bind(this)}>😘</span></div>
+          <div className="likes">
+            <span>{this.state.likes} </span>
+            <span className="pointer" onClick={this.likesHandler.bind(this)}>
+              😘
+            </span>
+          </div>
         </div>
       </div>
     );
   }
 
-  likesHandler(){
+  likesHandler() {
     const i = this.state.likes + 1;
-    this.setState({ likes: i })
+    this.setState({ likes: i });
   }
 
   editPostHandler = e => {

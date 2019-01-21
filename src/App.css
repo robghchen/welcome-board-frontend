@@ -138,8 +138,8 @@ btn {
 
 .likes {
   position: absolute;
-  right: 40%;
-  margin-top: 130px;
+  right: 0px;
+  margin-top: 140px;
 }
 
 #postit-form {
@@ -150,6 +150,7 @@ btn {
 }
 
 #postit-input {
+  position: absolute;
   background: transparent;
   text-align: center;
   border: none;
