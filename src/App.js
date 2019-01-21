@@ -228,7 +228,10 @@ class App extends Component {
         password: userInfo.loginPassword
       })
     })
-      .then(res => res.json())
+      .then(res => {
+        if(res.status === 401) throw new Error(res.status)
+        else return res.json()
+      })
       .then(res => {
         localStorage.setItem("token", res.jwt);
         this.setState({
@@ -241,7 +244,8 @@ class App extends Component {
             mod_id: res.user.mod_id
           }
         });
-      });
+      })
+      .catch(error => alert(`HTTP ERROR: ${error}, Unknown account or password!`));
   };
 
   logout = () => {
