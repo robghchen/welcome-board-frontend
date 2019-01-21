@@ -19,18 +19,20 @@ class NewPostForm extends Component {
 
   render() {
     return (
-      <div>
-        <form className="ui card" onSubmit={this.handleSubmit}>
+      <div id="new-post-form" className="ui card form">
+        <form onSubmit={this.handleSubmit}>
           Write a note to a previous mod.
           <br />
           <input
+            className="form-control"
             type="text"
             placeholder="Enter note"
+            maxlength="140"
             value={this.state.input}
             onChange={this.handleChange}
           />
           <br />
-          <input type="submit" />
+          <input className="submit button pointer" type="submit" />
         </form>
       </div>
     );

@@ -55,7 +55,11 @@ class LoginForm extends Component {
                     onChange={this.changeHandler}
                   />
                   <br />
-                  <input type="submit" className="submit button" value="Submit" />
+                  <input
+                    type="submit"
+                    className="submit button pointer"
+                    value="Submit"
+                  />
                 </form>
               </div>
             );

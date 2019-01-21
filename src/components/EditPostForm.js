@@ -1,29 +1,43 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class EditPostForm extends Component {
-    state = {
-        input: this.props.post.content,
-    }
+  state = {
+    input: this.props.post.content
+  };
 
-    changeHandler = (e) => {
-        this.setState({input: e.target.value})
-    }
+  changeHandler = e => {
+    this.setState({ input: e.target.value });
+  };
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        this.props.editPostHandler(this.props.post.id, this.state.input)
-    }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.editPostHandler(this.props.post.id, this.state.input);
+  };
 
-    render(){
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Edit post" value={this.state.input} onChange={this.changeHandler}/><br/>
-                    <input type="submit"/>
-                </form>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div id="postit-form" className="ui card form">
+        <form onSubmit={this.handleSubmit}>
+          <textarea
+            id="postit-input"
+            cols="30"
+            rows="6"
+            maxlength="140"
+            placeholder="Edit post"
+            value={this.state.input}
+            onChange={this.changeHandler}
+          />
+          <br />
+          <input
+            id="postit-submit"
+            className="pointer"
+            type="submit"
+            value="Update"
+          />
+        </form>
+      </div>
+    );
+  }
 }
 
 export default EditPostForm;
