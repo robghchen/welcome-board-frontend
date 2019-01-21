@@ -24,6 +24,8 @@ class ModShowPage extends Component {
                 currentUser={this.props.currentUser}
                 deleteHandler={this.props.deleteHandler}
                 editPostHandler={this.props.editPostHandler}
+                likes={this.props.likes}
+                isUserLoggedIn={this.props.isUserLoggedIn}
               />
             </div>
           );

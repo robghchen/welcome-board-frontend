@@ -6,8 +6,20 @@ class PostIt extends React.Component {
     super(props);
 
     this.state = {
-      markedForDeletion: false
+      markedForDeletion: false,
+      likes: ""
     };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:3000/api/v1/likes")
+      .then(resp => resp.json())
+      .then(likes => {
+        const postLikes = likes.filter(
+          like => like.post_id === this.props.post.id
+        ).length;
+        this.setState({ likes: postLikes });
+      });
   }
 
   componentWillUnmount() {
@@ -16,6 +28,16 @@ class PostIt extends React.Component {
         method: "DELETE"
       });
   }
+
+  // componentDidUpdate(prevProps, prevState){
+  //   if(prevState.likes < this.state.likes){
+  //     fetch('http://localhost:3000/api/v1/likes', {
+  //       method: "POST",
+  //       headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: localStorage.getItem("token")},
+  //       body: JSON.stringify({ post_id: this.props.post.id, user_id: this.props.currentUser.id })
+  //     })
+  //   }
+  // }
 
   render() {
     return (
@@ -39,9 +61,35 @@ class PostIt extends React.Component {
           ) : (
             <p>{this.props.post.content}</p>
           )}
+          <div className="likes">
+            <span>{this.state.likes} </span>
+            <span
+              className="pointer"
+              onClick={
+                this.props.isUserLoggedIn ? this.likesHandler.bind(this) : null
+              }
+            >
+              🥰
+            </span>
+          </div>
         </div>
       </div>
     );
+  }
+
+  likesHandler() {
+    fetch("http://localhost:3000/api/v1/likes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        post_id: this.props.post.id,
+        user_id: this.props.currentUser.id
+      })
+    }).then(this.setState({ likes: this.state.likes + 1 }));
   }
 
   editPostHandler = e => {

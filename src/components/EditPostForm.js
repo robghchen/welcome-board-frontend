@@ -22,7 +22,7 @@ class EditPostForm extends Component {
             id="postit-input"
             cols="30"
             rows="6"
-            maxlength="140"
+            maxLength="140"
             placeholder="Edit post"
             value={this.state.input}
             onChange={this.changeHandler}

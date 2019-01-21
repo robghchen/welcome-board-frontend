@@ -26,6 +26,7 @@ class App extends Component {
       mods: [],
       posts: [],
       users: [],
+      likes: [],
       token: ""
     };
 
@@ -44,6 +45,11 @@ class App extends Component {
       .then(posts => {
         this.setState({ posts });
       });
+    fetch("http://localhost:3000/api/v1/likes")
+    .then(resp => resp.json())
+    .then(likes => {
+      this.setState({ likes });
+    });
 
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
@@ -55,6 +61,18 @@ class App extends Component {
           Authorization: `${token}`
         }
       });
+    }
+
+    if(localStorage.getItem("token") !== null){
+      this.setState({
+        currentUser: {
+          id: localStorage.getItem("id"),
+          full_name: localStorage.getItem("full_name"),
+          mod_id: localStorage.getItem("mod_id")
+        },
+        token: localStorage.getItem("token"),
+        isUserLoggedIn: true
+      })
     }
   }
 
@@ -82,6 +100,8 @@ class App extends Component {
                   currentUser={this.state.currentUser}
                   deleteHandler={this.deleteHandler.bind(this)}
                   editPostHandler={this.editPostHandler}
+                  likes={this.state.likes}
+                  isUserLoggedIn={this.state.isUserLoggedIn}
                 />
               );
             }}
@@ -119,6 +139,7 @@ class App extends Component {
       </div>
     );
   }
+  
 
   addNewPost = (input, mod) => {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
@@ -235,6 +256,9 @@ class App extends Component {
       })
       .then(res => {
         localStorage.setItem("token", res.jwt);
+        localStorage.setItem("full_name", res.user.full_name);
+        localStorage.setItem("id", res.user.id);
+        localStorage.setItem("mod_id", res.user.mod_id);
         this.setState({
           isUserLoggedIn: true,
           token: localStorage.getItem("token"),
@@ -255,6 +279,10 @@ class App extends Component {
   logout = () => {
     //need to remove local storage token
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("full_name");
+    localStorage.removeItem("mod_id")
+  
     this.setState({
       currentUser: {
         id: 0,
@@ -264,6 +292,7 @@ class App extends Component {
       isUserLoggedIn: false,
       token: ""
     });
+    
     this.props.history.push("/home");
   };
 

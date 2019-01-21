@@ -136,6 +136,12 @@ btn {
   padding-left: 5px;
 }
 
+.likes {
+  position: absolute;
+  right: 0px;
+  margin-top: 140px;
+}
+
 #postit-form {
   position: absolute;
   background: transparent;
@@ -144,6 +150,7 @@ btn {
 }
 
 #postit-input {
+  position: absolute;
   background: transparent;
   text-align: center;
   border: none;
