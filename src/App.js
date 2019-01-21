@@ -105,36 +105,6 @@ class App extends Component {
     );
   }
 
-<<<<<<< HEAD
-  addNewPost = (input, mod) => {
-    if (parseInt(mod) > this.state.currentUser.mod_id) {
-      alert("You can only submit posts for mods you are in or have completed.");
-    } else {
-      let token = localStorage.getItem("token");
-      fetch("http://localhost:3000/api/v1/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: this.state.token
-        },
-        body: JSON.stringify({
-          content: input,
-          mod_id: parseInt(mod),
-          user_id: this.state.currentUser.id
-        })
-      })
-        .then(res => res.json())
-        .then(data => {
-          let newArr = [...this.state.posts];
-          newArr.push(data);
-          this.setState({ posts: newArr });
-        });
-    }
-  };
-
-=======
->>>>>>> b0694efe07ed9e057cac23a2a8b4aaa35208ff52
   updateHandler(currentUser) {
     this.setState({ currentUser });
 

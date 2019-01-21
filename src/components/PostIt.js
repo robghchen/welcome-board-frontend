@@ -19,11 +19,7 @@ class PostIt extends React.Component {
         <img alt="" src={require("./post_it_pic.png")} />
         <div className="post-content">
           <span className="delete">x</span>
-<<<<<<< HEAD
           <p>{this.props.post.content}</p>
-=======
-          <p>{this.props.content}</p>
->>>>>>> b0694efe07ed9e057cac23a2a8b4aaa35208ff52
         </div>
       </div>
     );
