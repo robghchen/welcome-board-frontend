@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
-    signupFullName: "",
+    full_name: "",
     password: "",
     mod_id: 1
   };
@@ -19,8 +19,8 @@ class SignUpForm extends Component {
 
     this.props.submitSignUpHandler(this.state, event);
     this.setState({
-      signupFullName: "",
-      signupPassword: "",
+      full_name: "",
+      password: "",
       mod_id: 1
     });
   };
@@ -39,10 +39,10 @@ class SignUpForm extends Component {
                   <input
                     id="full-name"
                     className="form-control"
-                    name="signupFullName"
+                    name="full_name"
                     type="text"
                     placeholder="Enter your full name"
-                    value={this.state.signupFullName}
+                    value={this.state.full_name}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -50,10 +50,10 @@ class SignUpForm extends Component {
                   <input
                     id="password"
                     className="form-control"
-                    name="signupPassword"
+                    name="password"
                     type="password"
                     placeholder="Enter a password"
-                    value={this.state.signupPassword}
+                    value={this.state.password}
                     onChange={this.changeHandler}
                   />
                   <br />
@@ -61,8 +61,8 @@ class SignUpForm extends Component {
                   <select
                     id="mod"
                     className="form-control"
-                    name="mod"
-                    value={this.state.mod}
+                    name="mod_id"
+                    value={this.state.mod_id}
                     onChange={this.changeHandler}
                   >
                     <option value="1">1</option>

@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
     return (
       <div className="ui menu">
-        <React.Fragment>
+        <Fragment>
           <Link to={"/home"} className="item">
             Welcome Board
           </Link>
           {this.props.currentPath === "/home" ? null : (
-            <React.Fragment>
+            <Fragment>
               <Link to={"/mod/1"} className="item">
                 Mod 1
               </Link>
@@ -26,9 +26,9 @@ class NavBar extends Component {
               <Link to={"/mod/5"} className="item">
                 Mod 5
               </Link>
-            </React.Fragment>
+            </Fragment>
           )}
-        </React.Fragment>
+        </Fragment>
         {this.props.isUserLoggedIn ? (
           <span className="ui menu navright">
             <Link to={"/editProfile"} className="item">

@@ -174,14 +174,13 @@ class App extends Component {
       );
   }
 
-  submitSignUpHandler(userInfo, event) {
+  submitSignUpHandler = (userInfo, event) => {
     event.preventDefault();
     this.createUser(userInfo);
     this.props.history.push("/home");
-  }
+  };
 
   createUser = userInfo => {
-    console.log("app", userInfo);
     fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
@@ -189,17 +188,19 @@ class App extends Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        full_name: userInfo.signupFullName,
-        password: userInfo.signupPassword
+        full_name: userInfo.full_name,
+        password: userInfo.password,
+        mod_id: userInfo.mod_id
       })
     })
       .then(res => res.json())
+      .then(res => console.log("res", res))
       .then(res => {
         localStorage.setItem("token", res.jwt);
         this.setState({
           currentUser: res.user
         });
-      });
+      })
   };
 
   submitLoginHandler = (userInfo, event) => {
