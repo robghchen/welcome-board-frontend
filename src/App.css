@@ -52,7 +52,7 @@ btn {
 .mods-masthead {
   background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/kG-5Wkc/new-york-city-manhattan-night-skyline_h50zrwtq__F0000.png") !important;
   background-size: cover !important;
-  background-image: url("/your-dir/your_image.jpg");
+  /* background-image: url("/your-dir/your_image.jpg"); */
   min-height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
