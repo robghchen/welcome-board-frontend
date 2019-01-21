@@ -101,6 +101,7 @@ class App extends Component {
                   deleteHandler={this.deleteHandler.bind(this)}
                   editPostHandler={this.editPostHandler}
                   likes={this.state.likes}
+                  isUserLoggedIn={this.state.isUserLoggedIn}
                 />
               );
             }}
@@ -138,6 +139,7 @@ class App extends Component {
       </div>
     );
   }
+  
 
   addNewPost = (input, mod) => {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
@@ -279,7 +281,7 @@ class App extends Component {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
     localStorage.removeItem("full_name");
-    localStorage.getItem("mod_id")
+    localStorage.removeItem("mod_id")
   
     this.setState({
       currentUser: {
