@@ -122,15 +122,18 @@ class App extends Component {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
       alert("You can only submit posts for mods you are in or have completed.");
     } else {
+      let token = localStorage.getItem("token");
       fetch("http://localhost:3000/api/v1/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          Accept: "application/json",
+          Authorization: `${token}`
         },
         body: JSON.stringify({
           content: input,
-          mod_id: mod
+          mod_id: mod,
+          user_id: this.state.currentUser.id
         })
       })
         .then(res => res.json())
