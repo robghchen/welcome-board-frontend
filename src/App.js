@@ -243,9 +243,10 @@ class App extends Component {
           }
         });
       })
-      .catch(error =>
-        alert(`HTTP ERROR: ${error}, Unknown account or password!`)
-      );
+      .catch(error => {
+        this.props.history.push("/login");
+        alert(`HTTP ERROR: ${error}, Unknown account or password!`);
+      });
   };
 
   logout = () => {

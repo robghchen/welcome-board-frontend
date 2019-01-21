@@ -34,7 +34,7 @@ class NavBar extends Component {
             <Link to={"/editProfile"} className="item">
               Edit Profile
             </Link>
-            <span className="item" onClick={this.props.logout}>
+            <span className="item pointer" onClick={this.props.logout}>
               Logout
             </span>
           </span>

@@ -114,6 +114,10 @@ btn {
   border-radius: 2px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 #login-form {
   position: relative;
   margin-top: 30%;
