@@ -39,9 +39,14 @@ class PostIt extends React.Component {
           ) : (
             <p>{this.props.post.content}</p>
           )}
+          <div><span>27 </span><span className="pointer" onClick={this.likesHandler.bind(this)}>🥰</span></div>
         </div>
       </div>
     );
+  }
+
+  likesHandler(){
+    console.log("like it")
   }
 
   editPostHandler = e => {
