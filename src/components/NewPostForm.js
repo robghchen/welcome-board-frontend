@@ -27,7 +27,7 @@ class NewPostForm extends Component {
             className="form-control"
             type="text"
             placeholder="Enter note"
-            maxlength="140"
+            maxLength="140"
             value={this.state.input}
             onChange={this.handleChange}
           />
