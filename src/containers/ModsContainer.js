@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 class ModsContainer extends React.Component {
   render() {
@@ -9,25 +9,37 @@ class ModsContainer extends React.Component {
         <Grid.Row columns={3}>
           <Grid.Column>
             <div className="mod-link-parent">
-              <h2>Mod 1</h2>
+              <h1>Mod 1</h1>
               <Link to={"/mod/1"} className="mod-link">
-                <Image src={require("../components/Ruby_Logo.png")} />
+                <img
+                  className="logo-image"
+                  alt=""
+                  src={require("../components/Ruby_Logo.png")}
+                />
               </Link>
             </div>
           </Grid.Column>
           <Grid.Column>
             <div className="mod-link-parent">
-              <h2>Mod 2</h2>
+              <h1>Mod 2</h1>
               <Link to={"/mod/2"} className="mod-link">
-                <Image src={require("../components/Ruby_On_Rails_Logo.png")} />
+                <img
+                  className="logo-image"
+                  alt=""
+                  src={require("../components/Ruby_On_Rails_Logo.png")}
+                />
               </Link>
             </div>
           </Grid.Column>
           <Grid.Column>
             <div className="mod-link-parent">
-              <h2>Mod 3</h2>
+              <h1>Mod 3</h1>
               <Link to={"/mod/3"} className="mod-link">
-                <Image src={require("../components/javascript-logo.png")} />
+                <img
+                  className="logo-image"
+                  alt=""
+                  src={require("../components/javascript-logo.png")}
+                />
               </Link>
             </div>
           </Grid.Column>
@@ -36,9 +48,11 @@ class ModsContainer extends React.Component {
         <Grid.Row columns={3}>
           <Grid.Column>
             <div className="mod-link-parent">
-              <h2>Mod 4</h2>
+              <h1>Mod 4</h1>
               <Link to={"/mod/4"} className="mod-link">
-                <Image
+                <img
+                  className="logo-image"
+                  alt=""
                   src={require("../components/react-logo-1000-transparent.png")}
                 />
               </Link>
@@ -46,9 +60,13 @@ class ModsContainer extends React.Component {
           </Grid.Column>
           <Grid.Column>
             <div className="mod-link-parent">
-              <h2>Mod 5</h2>
+              <h1>Mod 5</h1>
               <Link to={"/mod/5"} className="mod-link">
-                <Image src={require("../components/redux_logo.png")} />
+                <img
+                  className="logo-image"
+                  alt=""
+                  src={require("../components/redux_logo.png")}
+                />
               </Link>
             </div>
           </Grid.Column>

@@ -43,10 +43,17 @@ btn {
 
 .mod-link {
   display: inline-block;
+  width: 100%;
+}
+
+.logo-image {
+  margin-top: -5em;
+  width: 40%;
 }
 
 .mod-link-parent {
   text-align: center;
+  width: 100%;
 }
 
 .mods-masthead {
