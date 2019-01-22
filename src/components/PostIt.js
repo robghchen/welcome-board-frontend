@@ -36,15 +36,9 @@ class PostIt extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.markedForDeletion)
-      fetch(`http://localhost:3000/api/v1/posts/${this.props.post.id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: localStorage.getItem("token")
-        }
-      })
-        .then(res => res.json())
-        .then(console.log);
+    if (this.markedForDeletion) {
+      console.log("c will unmount called");
+    }
   }
 
   // componentDidUpdate(prevProps, prevState){
@@ -62,7 +56,7 @@ class PostIt extends React.Component {
       <div className="post-wrapper">
         <img alt="" src={require("./postit_note.png")} />
         <div className="post-content">
-          {this.props.post.user_id === this.props.currentUser.id ? (
+          {this.props.post.user_id == localStorage.getItem("id") ? (
             <span
               className="delete pointer"
               onClick={this.deleteHandler.bind(this)}
@@ -71,7 +65,7 @@ class PostIt extends React.Component {
             </span>
           ) : null}
 
-          {this.props.post.user_id === this.props.currentUser.id ? (
+          {this.props.post.user_id == localStorage.getItem("id") ? (
             <EditPostForm
               post={this.props.post}
               editPostHandler={this.props.editPostHandler}
@@ -120,7 +114,15 @@ class PostIt extends React.Component {
   };
 
   deleteHandler() {
-    this.setState({ markedForDeletion: true });
+    // this.setState({ markedForDeletion: true });
+    fetch(`http://localhost:3000/api/v1/posts/${this.props.post.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(console.log);
     this.props.deleteHandler(this.props.post.id);
   }
 }

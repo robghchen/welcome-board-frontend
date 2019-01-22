@@ -69,6 +69,8 @@ btn {
 .mod-name {
   padding-top: 2.5em;
   text-align: center;
+  font-size: 50px;
+  font-family: fantasy;
 }
 
 .post-container {
@@ -269,4 +271,8 @@ h1 span:nth-child(8) {
   margin-top: 80px;
   margin-left: 40%;
   margin-right: auto;
+}
+
+.navBar {
+  background-color: grey;
 }

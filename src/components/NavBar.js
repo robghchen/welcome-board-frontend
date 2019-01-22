@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 class NavBar extends Component {
   render() {
     return (
-      <div className="ui menu">
+      <div className="ui menu navBar">
         <Fragment>
           <Link to={"/home"} className="item">
             Welcome Board

@@ -51,7 +51,6 @@ class ModShowPage extends Component {
       </div>
     );
   }
-
 }
 
 export default ModShowPage;
