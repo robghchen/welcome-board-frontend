@@ -128,8 +128,8 @@ btn {
 
 .delete {
   float: right;
-  margin-right: -18px;
-  margin-top: -18px;
+  margin-right: -25px;
+  margin-top: -35px;
   background: white;
   border-radius: 25px;
   padding-right: 5px;
@@ -139,7 +139,7 @@ btn {
 .likes {
   position: absolute;
   right: 0px;
-  margin-top: 12em;
+  margin-top: 13em;
 }
 
 .post-content p {
