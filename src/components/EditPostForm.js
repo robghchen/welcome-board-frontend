@@ -21,12 +21,15 @@ class EditPostForm extends Component {
           <textarea
             id="postit-input"
             cols="30"
-            rows="6"
+            rows="8"
             maxLength="140"
             placeholder="Edit post"
             value={this.state.input}
             onChange={this.changeHandler}
           />
+          <p>
+            <span className="author">- {this.props.author}</span>
+          </p>
           <br />
           <input
             id="postit-submit"

@@ -77,7 +77,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.currentUser);
     return (
       <div>
         <NavBar
@@ -102,6 +101,7 @@ class App extends Component {
                   editPostHandler={this.editPostHandler}
                   likes={this.state.likes}
                   isUserLoggedIn={this.state.isUserLoggedIn}
+                  users={this.state.users}
                 />
               );
             }}

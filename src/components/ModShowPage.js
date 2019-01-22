@@ -26,6 +26,7 @@ class ModShowPage extends Component {
                 editPostHandler={this.props.editPostHandler}
                 likes={this.props.likes}
                 isUserLoggedIn={this.props.isUserLoggedIn}
+                users={this.props.users}
               />
             </div>
           );
@@ -41,11 +42,16 @@ class ModShowPage extends Component {
         <h1 className="mod-name">{`Mod ${this.props.mod_id}`}</h1>
         <div className="post-container">{this.showPostArray()}</div>
         <div style={show}>
-          <NewPostForm addPost={this.props.addPost} mod={this.props.mod_id} />
+          <NewPostForm
+            addPost={this.props.addPost}
+            mod={this.props.mod_id}
+            currentUser={this.props.currentUser}
+          />
         </div>
       </div>
     );
   }
+
 }
 
 export default ModShowPage;

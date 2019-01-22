@@ -139,28 +139,40 @@ btn {
 .likes {
   position: absolute;
   right: 0px;
-  margin-top: 140px;
+  margin-top: 12em;
+}
+
+.post-content p {
+  position: absolute;
+  padding-left: 1em;
+}
+
+.author {
+  position: absolute;
+  left: 0em;
+  width: 10em;
+  margin-top: 3em;
 }
 
 #postit-form {
   position: absolute;
   background: transparent;
   border: none;
-  margin-top: -5px;
+  margin-top: -1em;
+  padding-bottom: 9em;
 }
 
 #postit-input {
   position: absolute;
   background: transparent;
-  text-align: center;
   border: none;
   font-size: 11pt;
 }
 
 #postit-submit {
   position: absolute;
-  right: 10px;
-  top: 140px;
+  right: 1em;
+  top: 10em;
 }
 
 #login-form {
@@ -190,7 +202,7 @@ btn {
 #new-post-form {
   position: fixed;
   float: right;
-  top: 40%;
+  top: 30%;
   right: 30px;
   width: 25%;
   padding: 3em;

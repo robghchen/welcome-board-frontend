@@ -7,7 +7,8 @@ class PostIt extends React.Component {
 
     this.state = {
       markedForDeletion: false,
-      likes: ""
+      likes: "",
+      author: ""
     };
   }
 
@@ -20,11 +21,22 @@ class PostIt extends React.Component {
         ).length;
         this.setState({ likes: postLikes });
       });
+
+    // debugger;
+
+    const author = this.props.users.find(
+      user => user.id === this.props.post.user_id
+    ) === undefined ? "" : this.props.users.find(
+      user => user.id === this.props.post.user_id
+    ).full_name;
+    this.setState({
+      author: author
+    });
   }
 
   componentWillUnmount() {
     if (this.markedForDeletion)
-      fetch(`http://localhost:3001/api/v1/posts/${this.props.post.id}`, {
+      fetch(`http://localhost:3000/api/v1/posts/${this.props.post.id}`, {
         method: "DELETE"
       });
   }
@@ -57,9 +69,12 @@ class PostIt extends React.Component {
             <EditPostForm
               post={this.props.post}
               editPostHandler={this.props.editPostHandler}
+              author={this.state.author}
             />
           ) : (
-            <p>{this.props.post.content}</p>
+            <p>
+              {this.props.post.content} <span className="author">- {this.state.author}</span>
+            </p>
           )}
           <div className="likes">
             <span>{this.state.likes} </span>
@@ -69,7 +84,7 @@ class PostIt extends React.Component {
                 this.props.isUserLoggedIn ? this.likesHandler.bind(this) : null
               }
             >
-              🥰
+              😍
             </span>
           </div>
         </div>

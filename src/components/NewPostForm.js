@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class NewPostForm extends Component {
   state = {
-    input: ""
+    input: "",
   };
 
   handleChange = e => {
@@ -15,6 +15,7 @@ class NewPostForm extends Component {
     this.setState({
       input: ""
     });
+
   };
 
   render() {
@@ -23,10 +24,12 @@ class NewPostForm extends Component {
         <form onSubmit={this.handleSubmit}>
           Write a note to a previous mod.
           <br />
-          <input
+          <textarea
             className="form-control"
             type="text"
             placeholder="Enter note"
+            cols="120"
+            rows="8"
             maxLength="140"
             value={this.state.input}
             onChange={this.handleChange}
