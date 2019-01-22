@@ -69,7 +69,7 @@ class PostIt extends React.Component {
                 this.props.isUserLoggedIn ? this.likesHandler.bind(this) : null
               }
             >
-              🥰
+              😎
             </span>
           </div>
         </div>
