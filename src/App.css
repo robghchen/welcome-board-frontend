@@ -153,14 +153,14 @@ btn {
   position: absolute;
   background: transparent;
   text-align: center;
-  border: solid;
+  /* border: solid; */
   font-size: 11pt;
 }
 
 #postit-submit {
   position: absolute;
-  right: 20px;
-  top: 160px;
+  right: -230px;
+  top: 165px;
 }
 
 #login-form {

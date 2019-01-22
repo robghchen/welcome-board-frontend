@@ -16,7 +16,7 @@ class EditPostForm extends Component {
 
   render() {
     return (
-      <div id="postit-form" className="ui card form">
+      <div id="postit-form" className="ui">
         <form onSubmit={this.handleSubmit}>
           <textarea
             id="postit-input"
