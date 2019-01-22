@@ -81,7 +81,7 @@ class PostIt extends React.Component {
           <div className="likes">
             <span>{this.state.likes} </span>
             <span
-              className="pointer"
+              className={this.props.isUserLoggedIn ? "pointer" : ""}
               onClick={
                 this.props.isUserLoggedIn ? this.likesHandler.bind(this) : null
               }
