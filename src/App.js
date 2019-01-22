@@ -133,6 +133,7 @@ class App extends Component {
               );
             }}
           />
+          <Route path="/" component={MainPage} />
         </Switch>
 
         {/* {<StatsDiv />} */}
@@ -184,15 +185,16 @@ class App extends Component {
       })
     })
       .then(resp => resp.json())
-      .then(user =>
+      .then(user => {
         this.setState({
           currentUser: {
             id: user.id,
             full_name: user.full_name,
             mod_id: user.mod_id
           }
-        })
-      );
+        });
+        this.props.history.push("/home");
+      });
   }
 
   submitSignUpHandler = (userInfo, event) => {
