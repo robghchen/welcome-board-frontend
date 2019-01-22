@@ -46,10 +46,10 @@ class App extends Component {
         this.setState({ posts });
       });
     fetch("http://localhost:3000/api/v1/likes")
-    .then(resp => resp.json())
-    .then(likes => {
-      this.setState({ likes });
-    });
+      .then(resp => resp.json())
+      .then(likes => {
+        this.setState({ likes });
+      });
 
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
@@ -63,7 +63,7 @@ class App extends Component {
       });
     }
 
-    if(localStorage.getItem("token") !== null){
+    if (localStorage.length > 0) {
       this.setState({
         currentUser: {
           id: localStorage.getItem("id"),
@@ -72,7 +72,7 @@ class App extends Component {
         },
         token: localStorage.getItem("token"),
         isUserLoggedIn: true
-      })
+      });
     }
   }
 
@@ -139,7 +139,6 @@ class App extends Component {
       </div>
     );
   }
-  
 
   addNewPost = (input, mod) => {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
@@ -281,8 +280,8 @@ class App extends Component {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
     localStorage.removeItem("full_name");
-    localStorage.removeItem("mod_id")
-  
+    localStorage.removeItem("mod_id");
+
     this.setState({
       currentUser: {
         id: 0,
@@ -292,19 +291,19 @@ class App extends Component {
       isUserLoggedIn: false,
       token: ""
     });
-    
+
     this.props.history.push("/home");
   };
 
-  deleteHandler(id){
+  deleteHandler(id) {
     const posts = [...this.state.posts].filter(post => post.id !== id);
     this.setState({ posts });
   }
 
   editPostHandler = (id, content) => {
-    console.log(id, content)
+    console.log(id, content);
     fetch(`http://localhost:3000/api/v1/posts/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -313,20 +312,20 @@ class App extends Component {
       body: JSON.stringify({
         content
       })
-
     })
-      .then(res=>res.json())
+      .then(res => res.json())
       .then(data => {
-        let newArr = [...this.state.posts]
-          newArr = newArr.map((post)=>{
-          if(post.id===id){
-            return data
-          }else{ return post}
-        })
-        this.setState({ posts: newArr}) 
-      })
-  }
-
+        let newArr = [...this.state.posts];
+        newArr = newArr.map(post => {
+          if (post.id === id) {
+            return data;
+          } else {
+            return post;
+          }
+        });
+        this.setState({ posts: newArr });
+      });
+  };
 }
 
 export default withRouter(App);
