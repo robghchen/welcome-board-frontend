@@ -34,18 +34,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/mods")
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/mods")
       .then(resp => resp.json())
       .then(mods => this.setState({ mods }));
-    fetch("http://localhost:3000/api/v1/users")
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/users")
       .then(resp => resp.json())
       .then(users => this.setState({ users }));
-    fetch("http://localhost:3000/api/v1/posts")
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts")
       .then(resp => resp.json())
       .then(posts => {
         this.setState({ posts });
       });
-    fetch("http://localhost:3000/api/v1/likes")
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes")
       .then(resp => resp.json())
       .then(likes => {
         this.setState({ likes });
@@ -53,7 +53,7 @@ class App extends Component {
 
     if (this.state.isUserLoggedIn) {
       let token = localStorage.getItem("token");
-      fetch("http://localhost:3000/api/v1/current_user", {
+      fetch("https://welcome-board-backend.herokuapp.com/api/v1/current_user", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -146,7 +146,7 @@ class App extends Component {
       alert("You can only submit posts for mods you are in or have completed.");
     } else {
       let token = localStorage.getItem("token");
-      fetch("http://localhost:3000/api/v1/posts", {
+      fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -171,19 +171,24 @@ class App extends Component {
   updateHandler(currentUser) {
     this.setState({ currentUser });
 
-    fetch(`http://localhost:3000/api/v1/users/${currentUser.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: this.state.token
-      },
-      body: JSON.stringify({
-        full_name: currentUser.full_name,
-        password: currentUser.password,
-        mod_id: currentUser.mod_id
-      })
-    })
+    fetch(
+      `https://welcome-board-backend.herokuapp.com/api/v1/users/${
+        currentUser.id
+      }`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: this.state.token
+        },
+        body: JSON.stringify({
+          full_name: currentUser.full_name,
+          password: currentUser.password,
+          mod_id: currentUser.mod_id
+        })
+      }
+    )
       .then(resp => resp.json())
       .then(user => {
         this.setState({
@@ -205,7 +210,7 @@ class App extends Component {
 
   createUser = userInfo => {
     console.log("userinfo", userInfo);
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -240,7 +245,7 @@ class App extends Component {
   };
 
   getUser = userInfo => {
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -304,7 +309,7 @@ class App extends Component {
 
   editPostHandler = (id, content) => {
     console.log(id, content);
-    fetch(`http://localhost:3000/api/v1/posts/${id}`, {
+    fetch(`https://welcome-board-backend.herokuapp.com/api/v1/posts/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

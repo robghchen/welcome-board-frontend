@@ -13,7 +13,7 @@ class PostIt extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/likes")
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes")
       .then(resp => resp.json())
       .then(likes => {
         const postLikes = likes.filter(
@@ -36,14 +36,15 @@ class PostIt extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.markedForDeletion) {
-      console.log("c will unmount called");
-    }
+    // come back later to refactor
+    // if (this.markedForDeletion) {
+    //   console.log("c will unmount called");
+    // }
   }
 
   // componentDidUpdate(prevProps, prevState){
   //   if(prevState.likes < this.state.likes){
-  //     fetch('http://localhost:3000/api/v1/likes', {
+  //     fetch('https://welcome-board-backend.herokuapp.com/api/v1/likes', {
   //       method: "POST",
   //       headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: localStorage.getItem("token")},
   //       body: JSON.stringify({ post_id: this.props.post.id, user_id: this.props.currentUser.id })
@@ -94,7 +95,7 @@ class PostIt extends React.Component {
   }
 
   likesHandler() {
-    fetch("http://localhost:3000/api/v1/likes", {
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -115,12 +116,17 @@ class PostIt extends React.Component {
 
   deleteHandler() {
     // this.setState({ markedForDeletion: true });
-    fetch(`http://localhost:3000/api/v1/posts/${this.props.post.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: localStorage.getItem("token")
+    fetch(
+      `https://welcome-board-backend.herokuapp.com/api/v1/posts/${
+        this.props.post.id
+      }`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
       }
-    })
+    )
       .then(res => res.json())
       .then(console.log);
     this.props.deleteHandler(this.props.post.id);
