@@ -66,7 +66,7 @@ class PostIt extends React.Component {
       <div className="post-wrapper">
         <img alt="" src={require("./postit_note.png")} />
         <div className="post-content">
-          {this.props.post.user_id === parseInt(localStorage.getItem("id")) ? (
+          {this.props.post.user_id === parseInt(localStorage.getItem("id")) || parseInt(localStorage.getItem("id")) === 10 ? (
             <span
               className="delete pointer"
               onClick={this.deleteHandler.bind(this)}
