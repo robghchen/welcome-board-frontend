@@ -209,7 +209,6 @@ class App extends Component {
   };
 
   createUser = userInfo => {
-    console.log("userinfo", userInfo);
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
@@ -308,7 +307,6 @@ class App extends Component {
   }
 
   editPostHandler = (id, content) => {
-    console.log(id, content);
     fetch(`https://welcome-board-backend.herokuapp.com/api/v1/posts/${id}`, {
       method: "PATCH",
       headers: {

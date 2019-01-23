@@ -35,23 +35,6 @@ class PostIt extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    // come back later to refactor
-    // if (this.markedForDeletion) {
-    //   console.log("c will unmount called");
-    // }
-  }
-
-  // componentDidUpdate(prevProps, prevState){
-  //   if(prevState.likes < this.state.likes){
-  //     fetch('https://welcome-board-backend.herokuapp.com/api/v1/likes', {
-  //       method: "POST",
-  //       headers: {'Content-Type': 'application/json', Accept: 'application/json', Authorization: localStorage.getItem("token")},
-  //       body: JSON.stringify({ post_id: this.props.post.id, user_id: this.props.currentUser.id })
-  //     })
-  //   }
-  // }
-
   render() {
     return (
       <div className="post-wrapper">
@@ -126,9 +109,7 @@ class PostIt extends React.Component {
           Authorization: localStorage.getItem("token")
         }
       }
-    )
-      .then(res => res.json())
-      .then(console.log);
+    );
     this.props.deleteHandler(this.props.post.id);
   }
 }
