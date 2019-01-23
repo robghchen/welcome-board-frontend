@@ -155,29 +155,25 @@ class App extends Component {
   }
 
   addNewPost = (input, mod) => {
-    if (parseInt(mod) > this.state.currentUser.mod_id) {
-      alert("You can only submit posts for mods you are in or have completed.");
-    } else {
-      fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: localStorage.getItem("token")
-        },
-        body: JSON.stringify({
-          content: input,
-          mod_id: parseInt(mod),
-          user_id: parseInt(localStorage.getItem("id"))
-        })
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        content: input,
+        mod_id: parseInt(mod),
+        user_id: parseInt(localStorage.getItem("id"))
       })
-        .then(res => res.json())
-        .then(data => {
-          let newArr = [...this.state.posts];
-          newArr.push(data);
-          this.setState({ posts: newArr });
-        });
-    }
+    })
+      .then(res => res.json())
+      .then(data => {
+        let newArr = [...this.state.posts];
+        newArr.push(data);
+        this.setState({ posts: newArr });
+      });
   };
 
   updateHandler(currentUser) {
@@ -289,7 +285,7 @@ class App extends Component {
         });
       })
       .catch(error => {
-        localStorage.setItem("loginError", "Invalid account/password")
+        localStorage.setItem("loginError", "Invalid account/password");
         this.props.history.push("/login");
         // this.setState({ alert_error: true });
         // alert(`HTTP ERROR: ${error}, Unknown account or password!`);

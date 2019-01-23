@@ -45,7 +45,7 @@ class ModShowPage extends Component {
         <div style={show}>
           <NewPostForm
             addPost={this.props.addPost}
-            mod={this.props.mod_id}
+            mod_id={this.props.mod_id}
             currentUser={this.props.currentUser}
           />
         </div>
