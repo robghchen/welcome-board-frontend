@@ -25,7 +25,7 @@ class App extends Component {
       },
       mods: [],
       posts: [],
-      users: [],
+      // users: [],
       likes: [],
       token: ""
     };
@@ -40,7 +40,10 @@ class App extends Component {
 
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/users")
       .then(resp => resp.json())
-      .then(users => this.setState({ users }));
+      .then(users => {
+        localStorage.setItem("users", JSON.stringify(users));
+        // this.setState({ users })
+      });
 
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts")
       .then(resp => resp.json())
@@ -101,13 +104,13 @@ class App extends Component {
                   mod_id={RouterProps.match.params.id}
                   postArray={this.state.posts}
                   addPost={this.addNewPost}
-                  loggedInUser={this.state.isUserLoggedIn}
+                  isUserLoggedIn={this.state.isUserLoggedIn}
                   currentUser={this.state.currentUser}
                   deleteHandler={this.deleteHandler.bind(this)}
                   editPostHandler={this.editPostHandler}
                   likes={this.state.likes}
                   isUserLoggedIn={this.state.isUserLoggedIn}
-                  users={this.state.users}
+                  users={JSON.parse(localStorage.getItem("users"))}
                 />
               );
             }}
@@ -214,7 +217,6 @@ class App extends Component {
   };
 
   createUser = userInfo => {
-    console.log("userinfo", userInfo);
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
@@ -293,6 +295,7 @@ class App extends Component {
     localStorage.removeItem("id");
     localStorage.removeItem("full_name");
     localStorage.removeItem("mod_id");
+    localStorage.removeItem("users");
 
     this.setState({
       currentUser: {

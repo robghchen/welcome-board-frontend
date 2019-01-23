@@ -1,6 +1,6 @@
 import React from "react";
 import EditPostForm from "./EditPostForm";
-
+import { withRouter } from "react-router-dom";
 class PostIt extends React.Component {
   constructor(props) {
     super(props);
@@ -22,25 +22,33 @@ class PostIt extends React.Component {
         this.setState({ likes: postLikes });
       });
 
-    // debugger;
+    // saving users collection to localStorage if in case of page reload
+    // localStorage.setItem("users", JSON.stringify(this.props.users));
 
-    const author =
-      this.props.users.find(user => user.id === this.props.post.user_id) ===
-      undefined
-        ? ""
-        : this.props.users.find(user => user.id === this.props.post.user_id)
-            .full_name;
+    const author = this.props.users.find(
+      user => user.id === this.props.post.user_id
+    ).full_name;
+    // const author = this.props.users.find(
+    //   user => user.id === this.props.post.user_id
+    // ).full_name;
+
+    // const author =
+    //   this.props.users.find(user => user.id === this.props.post.user_id) ===
+    //   undefined
+    //     ? ""
+    //     : this.props.users.find(user => user.id === this.props.post.user_id)
+    //         .full_name;
+
     this.setState({
-      author: author
+      author
     });
   }
 
-  componentWillUnmount() {
-    // come back later to refactor
-    // if (this.markedForDeletion) {
-    //   console.log("c will unmount called");
-    // }
-  }
+  // componentWillUnmount() {
+  //   // come back later to refactor
+  //   // if (this.markedForDeletion) {
+  //   // }
+  // }
 
   // componentDidUpdate(prevProps, prevState){
   //   if(prevState.likes < this.state.likes){
@@ -126,11 +134,10 @@ class PostIt extends React.Component {
           Authorization: localStorage.getItem("token")
         }
       }
-    )
-      .then(res => res.json())
-      .then(console.log);
+    );
+
     this.props.deleteHandler(this.props.post.id);
   }
 }
 
-export default PostIt;
+export default withRouter(PostIt);

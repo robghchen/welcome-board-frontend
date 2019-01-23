@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class NewPostForm extends Component {
   state = {
-    input: "",
+    input: ""
   };
 
   handleChange = e => {
@@ -11,11 +12,15 @@ class NewPostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addPost(this.state.input, this.props.mod);
-    this.setState({
-      input: ""
-    });
-
+    if (this.state.input !== "") {
+      this.props.addPost(this.state.input, this.props.mod);
+      this.setState({
+        input: ""
+      });
+    } else {
+      alert("No blank comment please.");
+      this.props.history.push(`/mod/${this.props.mod}`);
+    }
   };
 
   render() {
@@ -42,4 +47,4 @@ class NewPostForm extends Component {
   }
 }
 
-export default NewPostForm;
+export default withRouter(NewPostForm);
