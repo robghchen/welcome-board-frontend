@@ -11,7 +11,7 @@ class ModShowPage extends Component {
   showPostArray = () => {
     let posts = this.props.postArray
       .filter(post => {
-        return post.mod_id == this.props.mod_id;
+        return post.mod_id === parseInt(this.props.mod_id);
       })
       .reverse();
 

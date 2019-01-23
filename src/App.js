@@ -109,7 +109,6 @@ class App extends Component {
                   deleteHandler={this.deleteHandler.bind(this)}
                   editPostHandler={this.editPostHandler}
                   likes={this.state.likes}
-                  isUserLoggedIn={this.state.isUserLoggedIn}
                   users={JSON.parse(localStorage.getItem("users"))}
                 />
               );

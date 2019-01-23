@@ -65,7 +65,7 @@ class PostIt extends React.Component {
       <div className="post-wrapper">
         <img alt="" src={require("./postit_note.png")} />
         <div className="post-content">
-          {this.props.post.user_id == localStorage.getItem("id") ? (
+          {this.props.post.user_id === parseInt(localStorage.getItem("id")) ? (
             <span
               className="delete pointer"
               onClick={this.deleteHandler.bind(this)}
@@ -74,7 +74,7 @@ class PostIt extends React.Component {
             </span>
           ) : null}
 
-          {this.props.post.user_id == localStorage.getItem("id") ? (
+          {this.props.post.user_id === parseInt(localStorage.getItem("id")) ? (
             <EditPostForm
               post={this.props.post}
               editPostHandler={this.props.editPostHandler}
@@ -89,6 +89,8 @@ class PostIt extends React.Component {
           <div className="likes">
             <span>{this.state.likes} </span>
             <span
+              role="img"
+              aria-label="emoji"
               className={this.props.isUserLoggedIn ? "pointer" : ""}
               onClick={
                 this.props.isUserLoggedIn ? this.likesHandler.bind(this) : null
