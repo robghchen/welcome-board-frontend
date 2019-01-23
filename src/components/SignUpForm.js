@@ -9,27 +9,9 @@ class SignUpForm extends Component {
     alert_error: false
   };
 
-  changeHandler = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  submitSignUpHandler = event => {
-    event.preventDefault();
-
-    if (this.state.full_name !== "" && this.state.password !== "") {
-      this.props.submitSignUpHandler(this.state, event);
-      this.setState({
-        full_name: "",
-        password: "",
-        mod_id: 1
-      });
-    } else {
-      this.setState({alert_error: true})
-      // this.props.history.push("/signup");
-    }
-  };
+  componentWillUnmount() {
+    localStorage.removeItem("signupError");
+  }
 
   render() {
     return (
@@ -77,7 +59,16 @@ class SignUpForm extends Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
-                  {this.state.alert_error ? <span className="alert-error">Full name and password field cannot be empty.</span> : null}
+                  {this.state.alert_error ? (
+                    <span className="alert-error">
+                      Full name and password field cannot be empty.
+                    </span>
+                  ) : null}
+                  <span className="alert-error">
+                    {localStorage.getItem("signupError") !== ""
+                      ? localStorage.getItem("signupError")
+                      : null}
+                  </span>
                   <input
                     type="submit"
                     className="submit button"
@@ -91,6 +82,28 @@ class SignUpForm extends Component {
       </div>
     );
   }
+
+  changeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  submitSignUpHandler = event => {
+    event.preventDefault();
+
+    if (this.state.full_name !== "" && this.state.password !== "") {
+      this.props.submitSignUpHandler(this.state, event);
+      this.setState({
+        full_name: "",
+        password: "",
+        mod_id: 1
+      });
+    } else {
+      this.setState({ alert_error: true });
+      // this.props.history.push("/signup");
+    }
+  };
 }
 
 export default withRouter(SignUpForm);

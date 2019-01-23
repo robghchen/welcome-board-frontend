@@ -32,22 +32,6 @@ class LoginForm extends Component {
     }
   };
 
-  submitSignUpHandler = event => {
-    event.preventDefault();
-
-    if (this.state.full_name !== "" && this.state.password !== "") {
-      this.props.submitSignUpHandler(this.state, event);
-      this.setState({
-        full_name: "",
-        password: "",
-        mod_id: 1
-      });
-    } else {
-      this.setState({ alert_error: true });
-      // this.props.history.push("/signup");
-    }
-  };
-
   render() {
     return (
       <div id="login-form" className="ui card form">

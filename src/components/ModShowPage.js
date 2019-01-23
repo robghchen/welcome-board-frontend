@@ -40,7 +40,7 @@ class ModShowPage extends Component {
     const show = { display: this.props.isUserLoggedIn ? "block" : "none" };
     return (
       <div className="ui">
-        <h1 className="mod-name">{`Mod ${this.props.mod_id}`}</h1>
+        <h1 className="mod-name">Welcome to {`Mod ${this.props.mod_id}`}</h1>
         <div className="post-container">{this.showPostArray()}</div>
         <div style={show}>
           <NewPostForm

@@ -69,8 +69,13 @@ btn {
 .mod-name {
   padding-top: 2.5em;
   text-align: center;
-  font-size: 50px;
+  font-size: 3.5em;
   font-family: fantasy;
+}
+
+.mod-title {
+  font-family: fantasy;
+  font-size: 2.5em;
 }
 
 .post-container {
@@ -283,8 +288,9 @@ h1 span:nth-child(8) {
 }
 
 #welcome {
+  position:relative;
   margin-top: 80px;
-  margin-left: 40%;
+  margin-left: 35%;
   margin-right: auto;
 }
 
