@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 class NewPostForm extends Component {
   state = {
-    input: "", 
+    input: "",
     alert_error: false,
     alert_error_mod_id: false
   };
@@ -15,12 +15,10 @@ class NewPostForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.input !== "") {
-
-
-      if (this.props.currentUser.mod_id > this.props.mod_id) { 
+      if (this.props.currentUser.mod_id > this.props.mod_id) {
         this.props.addPost(this.state.input, this.props.mod_id);
-      } else { 
-        this.setState({alert_error_mod_id: true})
+      } else {
+        this.setState({ alert_error_mod_id: true });
       }
 
       this.setState({
@@ -28,7 +26,9 @@ class NewPostForm extends Component {
         alert_error: false
       });
     } else {
-      {this.setState({alert_error: true})}
+      {
+        this.setState({ alert_error: true });
+      }
       this.props.history.push(`/mod/${this.props.mod_id}`);
     }
   };
@@ -49,8 +49,15 @@ class NewPostForm extends Component {
             value={this.state.input}
             onChange={this.handleChange}
           />
-          {this.state.alert_error ? <span className="alert-error">No blank comment please.</span> : null}
-          {this.state.alert_error_mod_id ? <span className="alert-error">You cannot post to mods that you are not in or have not completed.</span> : null}
+          <p>Remaining Characters: {140 - this.state.input.length}</p>
+          {this.state.alert_error ? (
+            <span className="alert-error">No blank comment please.</span>
+          ) : null}
+          {this.state.alert_error_mod_id ? (
+            <span className="alert-error">
+              You cannot post to mods that you are not in or have not completed.
+            </span>
+          ) : null}
           <input className="submit button pointer" type="submit" />
         </form>
       </div>
