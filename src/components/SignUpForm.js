@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
@@ -17,12 +17,17 @@ class SignUpForm extends Component {
   submitSignUpHandler = event => {
     event.preventDefault();
 
-    this.props.submitSignUpHandler(this.state, event);
-    this.setState({
-      full_name: "",
-      password: "",
-      mod_id: 1
-    });
+    if (this.state.full_name !== "" || this.state.password !== "") {
+      this.props.submitSignUpHandler(this.state, event);
+      this.setState({
+        full_name: "",
+        password: "",
+        mod_id: 1
+      });
+    } else {
+      alert("Full name and password field cannot be empty.");
+      this.props.history.push("/signup");
+    }
   };
 
   render() {
@@ -71,7 +76,11 @@ class SignUpForm extends Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
-                  <input type="submit" className="submit button" value="Submit" />
+                  <input
+                    type="submit"
+                    className="submit button"
+                    value="Submit"
+                  />
                 </form>
               </div>
             );
@@ -82,4 +91,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);
