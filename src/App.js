@@ -86,6 +86,14 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/users")
+      .then(resp => resp.json())
+      .then(users => {
+        localStorage.setItem("users", JSON.stringify(users));
+      });
+  }
+
   componentWillUnmount() {
     localStorage.clear();
   }
@@ -165,7 +173,7 @@ class App extends Component {
       body: JSON.stringify({
         content: input,
         mod_id: parseInt(mod),
-        user_id: parseInt(localStorage.getItem("id"))
+        user_id: this.state.currentUser.id
       })
     })
       .then(res => res.json())

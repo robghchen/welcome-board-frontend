@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
 
 class ModsContainer extends React.Component {
@@ -89,4 +89,4 @@ class ModsContainer extends React.Component {
   }
 }
 
-export default ModsContainer;
+export default withRouter(ModsContainer);

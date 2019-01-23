@@ -25,7 +25,7 @@ class PostIt extends React.Component {
 
     // saving users collection to localStorage if in case of page reload
     // localStorage.setItem("users", JSON.stringify(this.props.users));
-
+    // debugger;
     const author = this.props.users.find(
       user => user.id === this.props.post.user_id
     ).full_name;
@@ -66,7 +66,8 @@ class PostIt extends React.Component {
       <div className="post-wrapper">
         <img alt="" src={require("./postit_note.png")} />
         <div className="post-content">
-          {this.props.post.user_id === parseInt(localStorage.getItem("id")) || parseInt(localStorage.getItem("id")) === 10 ? (
+          {this.props.post.user_id === parseInt(localStorage.getItem("id")) ||
+          parseInt(localStorage.getItem("id")) === 10 ? (
             <span
               className="delete pointer"
               onClick={this.deleteHandler.bind(this)}
