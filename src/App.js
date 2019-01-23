@@ -247,7 +247,7 @@ class App extends Component {
         });
       })
       .catch(error => {
-        localStorage.setItem("signupErro", "Duplicate account");
+        localStorage.setItem("signupError", "Duplicate account");
         this.props.history.push("/signup");
       });
   };
