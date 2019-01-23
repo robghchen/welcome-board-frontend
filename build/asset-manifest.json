@@ -1,10 +1,10 @@
 {
   "main.css": "/static/css/main.3b6a6493.chunk.css",
-  "main.js": "/static/js/main.5ee4fa27.chunk.js",
-  "main.js.map": "/static/js/main.5ee4fa27.chunk.js.map",
+  "main.js": "/static/js/main.be63193d.chunk.js",
+  "main.js.map": "/static/js/main.be63193d.chunk.js.map",
   "static/css/1.8dcbc563.chunk.css": "/static/css/1.8dcbc563.chunk.css",
-  "static/js/1.bdf3d1ab.chunk.js": "/static/js/1.bdf3d1ab.chunk.js",
-  "static/js/1.bdf3d1ab.chunk.js.map": "/static/js/1.bdf3d1ab.chunk.js.map",
+  "static/js/1.85b3953a.chunk.js": "/static/js/1.85b3953a.chunk.js",
+  "static/js/1.85b3953a.chunk.js.map": "/static/js/1.85b3953a.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
   "static/media/semantic.min.css": "/static/media/brand-icons.a1a749e8.svg",
@@ -15,9 +15,9 @@
   "static/media/redux_logo.png": "/static/media/redux_logo.ffca3fad.png",
   "static/media/postit_note.png": "/static/media/postit_note.15bc09a3.png",
   "static/media/Ruby_Logo.png": "/static/media/Ruby_Logo.3faf7fef.png",
-  "static/css/1.8dcbc563.chunk.css.map": "/static/css/1.8dcbc563.chunk.css.map",
   "static/css/main.3b6a6493.chunk.css.map": "/static/css/main.3b6a6493.chunk.css.map",
+  "static/css/1.8dcbc563.chunk.css.map": "/static/css/1.8dcbc563.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.c0bfeaeb45ebf2de832e9ed63bfef84e.js": "/precache-manifest.c0bfeaeb45ebf2de832e9ed63bfef84e.js",
+  "precache-manifest.2c1bd1c5730beac0e4505acc8381fe40.js": "/precache-manifest.2c1bd1c5730beac0e4505acc8381fe40.js",
   "service-worker.js": "/service-worker.js"
 }
