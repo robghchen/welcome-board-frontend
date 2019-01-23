@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 class LoginForm extends Component {
   state = {
     loginFullName: "",
-    loginPassword: ""
+    loginPassword: "",
+    alert_error: false
   };
+
+  componentWillUnmount() {
+    localStorage.removeItem("loginError");
+  }
 
   changeHandler = event => {
     this.setState({
@@ -16,11 +21,31 @@ class LoginForm extends Component {
   submitLoginHandler = event => {
     event.preventDefault();
 
-    this.props.submitLoginHandler(this.state, event);
-    this.setState({
-      loginFullName: "",
-      loginPassword: ""
-    });
+    if (this.state.loginFullName !== "" && this.state.loginPassword !== "") {
+      this.props.submitLoginHandler(this.state, event);
+      this.setState({
+        loginFullName: "",
+        loginPassword: ""
+      });
+    } else {
+      this.setState({ alert_error: true });
+    }
+  };
+
+  submitSignUpHandler = event => {
+    event.preventDefault();
+
+    if (this.state.full_name !== "" && this.state.password !== "") {
+      this.props.submitSignUpHandler(this.state, event);
+      this.setState({
+        full_name: "",
+        password: "",
+        mod_id: 1
+      });
+    } else {
+      this.setState({ alert_error: true });
+      // this.props.history.push("/signup");
+    }
   };
 
   render() {
@@ -54,7 +79,17 @@ class LoginForm extends Component {
                     value={this.state.loginPassword}
                     onChange={this.changeHandler}
                   />
-                  <br />
+
+                  {this.state.alert_error ? (
+                    <span className="alert-error">
+                      Full name and password field cannot be empty.
+                    </span>
+                  ) : null}
+                  <span className="alert-error">
+                    {localStorage.getItem("loginError") !== ""
+                      ? localStorage.getItem("loginError")
+                      : null}
+                  </span>
                   <input
                     type="submit"
                     className="submit button pointer"

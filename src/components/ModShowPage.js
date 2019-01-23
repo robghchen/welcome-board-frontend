@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PostIt from "./PostIt";
 import NewPostForm from "./NewPostForm";
+import { withRouter } from "react-router-dom";
 
 class ModShowPage extends Component {
   state = {
@@ -10,7 +11,7 @@ class ModShowPage extends Component {
   showPostArray = () => {
     let posts = this.props.postArray
       .filter(post => {
-        return post.mod_id == this.props.mod_id;
+        return post.mod_id === parseInt(this.props.mod_id);
       })
       .reverse();
 
@@ -36,7 +37,7 @@ class ModShowPage extends Component {
   };
 
   render() {
-    const show = { display: this.props.loggedInUser ? "block" : "none" };
+    const show = { display: this.props.isUserLoggedIn ? "block" : "none" };
     return (
       <div className="ui">
         <h1 className="mod-name">{`Mod ${this.props.mod_id}`}</h1>
@@ -44,7 +45,7 @@ class ModShowPage extends Component {
         <div style={show}>
           <NewPostForm
             addPost={this.props.addPost}
-            mod={this.props.mod_id}
+            mod_id={this.props.mod_id}
             currentUser={this.props.currentUser}
           />
         </div>
@@ -53,4 +54,4 @@ class ModShowPage extends Component {
   }
 }
 
-export default ModShowPage;
+export default withRouter(ModShowPage);

@@ -2,16 +2,21 @@ import React, { Component } from "react";
 
 class EditPostForm extends Component {
   state = {
-    input: this.props.post.content
+    input: this.props.post.content,
+    alert_error: false
   };
 
   changeHandler = e => {
-    this.setState({ input: e.target.value });
+    this.setState({ input: e.target.value, alert_error: false });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.editPostHandler(this.props.post.id, this.state.input);
+    if (this.state.input.length > 0) {
+      this.props.editPostHandler(this.props.post.id, this.state.input);
+    } else {
+      this.setState({ alert_error: true });
+    }
   };
 
   render() {
@@ -30,7 +35,7 @@ class EditPostForm extends Component {
           <p>
             <span className="author">- {this.props.author}</span>
           </p>
-          <br />
+          
           <input
             id="postit-submit"
             className="pointer"
@@ -38,6 +43,9 @@ class EditPostForm extends Component {
             value="Update"
           />
         </form>
+        <span id="edit-postit-alert-error">{this.state.alert_error ? 
+            "No blank comment please."
+           : null}</span>
       </div>
     );
   }

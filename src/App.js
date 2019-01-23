@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      // alert_error: false,
       isUserLoggedIn: false,
       current_mod: 0,
       // please do not change the snake case
@@ -25,7 +26,7 @@ class App extends Component {
       },
       mods: [],
       posts: [],
-      users: [],
+      // users: [],
       likes: [],
       token: ""
     };
@@ -37,43 +38,56 @@ class App extends Component {
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/mods")
       .then(resp => resp.json())
       .then(mods => this.setState({ mods }));
+
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/users")
       .then(resp => resp.json())
-      .then(users => this.setState({ users }));
+      .then(users => {
+        localStorage.setItem("users", JSON.stringify(users));
+        // this.setState({ users })
+      });
+
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts")
       .then(resp => resp.json())
       .then(posts => {
         this.setState({ posts });
       });
+
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes")
       .then(resp => resp.json())
       .then(likes => {
         this.setState({ likes });
       });
 
-    if (this.state.isUserLoggedIn) {
-      let token = localStorage.getItem("token");
-      fetch("https://welcome-board-backend.herokuapp.com/api/v1/current_user", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Action: "application/json",
-          Authorization: `${token}`
-        }
-      });
-    }
+    // Commented by Carlo: will comment this block of code because the code is not doing anything and
+    // the state will default back to false if the page is reloaded
+    // which will make the block of code below useless.
+    // if (this.state.isUserLoggedIn) {
+    //   let token = localStorage.getItem("token");
+    //   fetch("https://welcome-board-backend.herokuapp.com/api/v1/current_user", {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Action: "application/json",
+    //       Authorization: `${token}`
+    //     }
+    //   });
+    // }
 
-    if (localStorage.length > 0) {
+    if (localStorage.getItem("token") !== null) {
       this.setState({
         currentUser: {
-          id: localStorage.getItem("id"),
+          id: parseInt(localStorage.getItem("id")),
           full_name: localStorage.getItem("full_name"),
-          mod_id: localStorage.getItem("mod_id")
+          mod_id: parseInt(localStorage.getItem("mod_id"))
         },
         token: localStorage.getItem("token"),
         isUserLoggedIn: true
       });
     }
+  }
+
+  componentWillUnmount() {
+    localStorage.clear();
   }
 
   render() {
@@ -95,13 +109,12 @@ class App extends Component {
                   mod_id={RouterProps.match.params.id}
                   postArray={this.state.posts}
                   addPost={this.addNewPost}
-                  loggedInUser={this.state.isUserLoggedIn}
+                  isUserLoggedIn={this.state.isUserLoggedIn}
                   currentUser={this.state.currentUser}
                   deleteHandler={this.deleteHandler.bind(this)}
                   editPostHandler={this.editPostHandler}
                   likes={this.state.likes}
-                  isUserLoggedIn={this.state.isUserLoggedIn}
-                  users={this.state.users}
+                  users={JSON.parse(localStorage.getItem("users"))}
                 />
               );
             }}
@@ -142,30 +155,25 @@ class App extends Component {
   }
 
   addNewPost = (input, mod) => {
-    if (parseInt(mod) > this.state.currentUser.mod_id) {
-      alert("You can only submit posts for mods you are in or have completed.");
-    } else {
-      let token = localStorage.getItem("token");
-      fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: this.state.token
-        },
-        body: JSON.stringify({
-          content: input,
-          mod_id: parseInt(mod),
-          user_id: this.state.currentUser.id
-        })
+    fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        content: input,
+        mod_id: parseInt(mod),
+        user_id: parseInt(localStorage.getItem("id"))
       })
-        .then(res => res.json())
-        .then(data => {
-          let newArr = [...this.state.posts];
-          newArr.push(data);
-          this.setState({ posts: newArr });
-        });
-    }
+    })
+      .then(res => res.json())
+      .then(data => {
+        let newArr = [...this.state.posts];
+        newArr.push(data);
+        this.setState({ posts: newArr });
+      });
   };
 
   updateHandler(currentUser) {
@@ -259,6 +267,7 @@ class App extends Component {
         if (res.status === 401) throw new Error(res.status);
         else return res.json();
       })
+      // .then(res => res.json())
       .then(res => {
         localStorage.setItem("token", res.jwt);
         localStorage.setItem("full_name", res.user.full_name);
@@ -276,8 +285,10 @@ class App extends Component {
         });
       })
       .catch(error => {
+        localStorage.setItem("loginError", "Invalid account/password");
         this.props.history.push("/login");
-        alert(`HTTP ERROR: ${error}, Unknown account or password!`);
+        // this.setState({ alert_error: true });
+        // alert(`HTTP ERROR: ${error}, Unknown account or password!`);
       });
   };
 

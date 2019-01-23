@@ -1,5 +1,6 @@
 import React from "react";
 import EditPostForm from "./EditPostForm";
+import { withRouter } from "react-router-dom";
 
 class PostIt extends React.Component {
   constructor(props) {
@@ -22,16 +23,25 @@ class PostIt extends React.Component {
         this.setState({ likes: postLikes });
       });
 
-    // debugger;
+    // saving users collection to localStorage if in case of page reload
+    // localStorage.setItem("users", JSON.stringify(this.props.users));
 
-    const author =
-      this.props.users.find(user => user.id === this.props.post.user_id) ===
-      undefined
-        ? ""
-        : this.props.users.find(user => user.id === this.props.post.user_id)
-            .full_name;
+    const author = this.props.users.find(
+      user => user.id === this.props.post.user_id
+    ).full_name;
+    // const author = this.props.users.find(
+    //   user => user.id === this.props.post.user_id
+    // ).full_name;
+
+    // const author =
+    //   this.props.users.find(user => user.id === this.props.post.user_id) ===
+    //   undefined
+    //     ? ""
+    //     : this.props.users.find(user => user.id === this.props.post.user_id)
+    //         .full_name;
+
     this.setState({
-      author: author
+      author
     });
   }
 
@@ -40,7 +50,7 @@ class PostIt extends React.Component {
       <div className="post-wrapper">
         <img alt="" src={require("./postit_note.png")} />
         <div className="post-content">
-          {this.props.post.user_id == localStorage.getItem("id") ? (
+          {this.props.post.user_id === parseInt(localStorage.getItem("id")) ? (
             <span
               className="delete pointer"
               onClick={this.deleteHandler.bind(this)}
@@ -49,7 +59,7 @@ class PostIt extends React.Component {
             </span>
           ) : null}
 
-          {this.props.post.user_id == localStorage.getItem("id") ? (
+          {this.props.post.user_id === parseInt(localStorage.getItem("id")) ? (
             <EditPostForm
               post={this.props.post}
               editPostHandler={this.props.editPostHandler}
@@ -64,7 +74,9 @@ class PostIt extends React.Component {
           <div className="likes">
             <span>{this.state.likes} </span>
             <span
-              className="pointer"
+              role="img"
+              aria-label="emoji"
+              className={this.props.isUserLoggedIn ? "pointer" : ""}
               onClick={
                 this.props.isUserLoggedIn ? this.likesHandler.bind(this) : null
               }
@@ -110,8 +122,12 @@ class PostIt extends React.Component {
         }
       }
     );
+<<<<<<< HEAD
+=======
+
+>>>>>>> a8b7cc5889f485202215e3da3503b560ca7390f2
     this.props.deleteHandler(this.props.post.id);
   }
 }
 
-export default PostIt;
+export default withRouter(PostIt);

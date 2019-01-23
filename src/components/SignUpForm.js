@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
     full_name: "",
     password: "",
-    mod_id: 1
+    mod_id: 1,
+    alert_error: false
   };
 
   changeHandler = event => {
@@ -17,12 +18,17 @@ class SignUpForm extends Component {
   submitSignUpHandler = event => {
     event.preventDefault();
 
-    this.props.submitSignUpHandler(this.state, event);
-    this.setState({
-      full_name: "",
-      password: "",
-      mod_id: 1
-    });
+    if (this.state.full_name !== "" && this.state.password !== "") {
+      this.props.submitSignUpHandler(this.state, event);
+      this.setState({
+        full_name: "",
+        password: "",
+        mod_id: 1
+      });
+    } else {
+      this.setState({alert_error: true})
+      // this.props.history.push("/signup");
+    }
   };
 
   render() {
@@ -71,7 +77,12 @@ class SignUpForm extends Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
-                  <input type="submit" className="submit button" value="Submit" />
+                  {this.state.alert_error ? <span className="alert-error">Full name and password field cannot be empty.</span> : null}
+                  <input
+                    type="submit"
+                    className="submit button"
+                    value="Submit"
+                  />
                 </form>
               </div>
             );
@@ -82,4 +93,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);

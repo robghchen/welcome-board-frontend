@@ -9,7 +9,8 @@ class EditProfileForm extends Component {
       id: this.props.currentUser.id,
       full_name: this.props.currentUser.full_name,
       password: "",
-      mod_id: this.props.currentUser.mod_id
+      mod_id: this.props.currentUser.mod_id,
+      alert_error: false
     };
 
     this.submitHandler = this.submitHandler.bind(this);
@@ -46,6 +47,9 @@ class EditProfileForm extends Component {
             >
               {this.getMods()}
             </select>
+
+            {this.state.alert_error ? <span className="alert-error">Full name and password field cannot be empty. Mod ID should not be lower than your current mod.</span> : null}
+
             <input
               type="submit"
               className="submit button pointer"
@@ -69,8 +73,16 @@ class EditProfileForm extends Component {
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.updateHandler(this.state);
-    e.target.reset();
+    if (
+      this.state.full_name !== "" &&
+      this.state.password !== "" &&
+      this.state.mod_id >= this.props.currentUser.mod_id
+    ) {
+      this.props.updateHandler(this.state);
+      e.target.reset();
+    } else {
+      this.setState({ alert_error: true });
+    }
   }
 
   changeHandler(event) {
