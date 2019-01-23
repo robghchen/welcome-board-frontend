@@ -21,7 +21,7 @@ class ModsContainer extends React.Component {
           <Grid.Row columns={3}>
             <Grid.Column>
               <div className="mod-link-parent">
-                <h1>Mod 1</h1>
+                <h1 className="mod-title">Mod 1</h1>
                 <Link to={"/mod/1"} className="mod-link">
                   <img
                     className="logo-image"
@@ -33,7 +33,7 @@ class ModsContainer extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <div className="mod-link-parent">
-                <h1>Mod 2</h1>
+                <h1 className="mod-title">Mod 2</h1>
                 <Link to={"/mod/2"} className="mod-link">
                   <img
                     className="logo-image"
@@ -45,7 +45,7 @@ class ModsContainer extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <div className="mod-link-parent">
-                <h1>Mod 3</h1>
+                <h1 className="mod-title">Mod 3</h1>
                 <Link to={"/mod/3"} className="mod-link">
                   <img
                     className="logo-image"
@@ -60,7 +60,7 @@ class ModsContainer extends React.Component {
           <Grid.Row columns={3}>
             <Grid.Column>
               <div className="mod-link-parent">
-                <h1>Mod 4</h1>
+                <h1 className="mod-title">Mod 4</h1>
                 <Link to={"/mod/4"} className="mod-link">
                   <img
                     className="logo-image"
@@ -72,7 +72,7 @@ class ModsContainer extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <div className="mod-link-parent">
-                <h1>Mod 5</h1>
+                <h1 className="mod-title">Mod 5</h1>
                 <Link to={"/mod/5"} className="mod-link">
                   <img
                     className="logo-image"
