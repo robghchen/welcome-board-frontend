@@ -12,6 +12,7 @@ class SignUpForm extends Component {
   componentWillUnmount() {
     localStorage.removeItem("signupError");
   }
+
   render() {
     return (
       <div id="signup-form" className="ui card form">
@@ -63,6 +64,11 @@ class SignUpForm extends Component {
                       Full name and password field cannot be empty.
                     </span>
                   ) : null}
+                  <span className="alert-error">
+                    {localStorage.getItem("signupError") !== ""
+                      ? localStorage.getItem("signupError")
+                      : null}
+                  </span>
                   <input
                     type="submit"
                     className="submit button"
