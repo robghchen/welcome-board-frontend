@@ -42,7 +42,6 @@ class ModShowPage extends Component {
       <div className="ui">
         <h1 className="mod-name">Welcome to {`Mod ${this.props.mod_id}`}</h1>
         <div className="post-container">{this.showPostArray()}</div>
-        
         <div style={show}>
           <NewPostForm
             addPost={this.props.addPost}
