@@ -75,14 +75,18 @@ class App extends Component {
     if (localStorage.getItem("token") !== null) {
       this.setState({
         currentUser: {
-          id: localStorage.getItem("id"),
+          id: parseInt(localStorage.getItem("id")),
           full_name: localStorage.getItem("full_name"),
-          mod_id: localStorage.getItem("mod_id")
+          mod_id: parseInt(localStorage.getItem("mod_id"))
         },
         token: localStorage.getItem("token"),
         isUserLoggedIn: true
       });
     }
+  }
+
+  componentWillUnmount() {
+    localStorage.clear();
   }
 
   render() {
@@ -290,7 +294,10 @@ class App extends Component {
 
   logout = () => {
     //need to remove local storage token
-    localStorage.clear();
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("full_name");
+    localStorage.removeItem("mod_id");
 
     this.setState({
       currentUser: {
