@@ -290,11 +290,7 @@ class App extends Component {
 
   logout = () => {
     //need to remove local storage token
-    localStorage.removeItem("token");
-    localStorage.removeItem("id");
-    localStorage.removeItem("full_name");
-    localStorage.removeItem("mod_id");
-    localStorage.removeItem("users");
+    localStorage.clear();
 
     this.setState({
       currentUser: {
