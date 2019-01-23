@@ -37,33 +37,39 @@ class App extends Component {
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/mods")
       .then(resp => resp.json())
       .then(mods => this.setState({ mods }));
+
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/users")
       .then(resp => resp.json())
       .then(users => this.setState({ users }));
+
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts")
       .then(resp => resp.json())
       .then(posts => {
         this.setState({ posts });
       });
+
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes")
       .then(resp => resp.json())
       .then(likes => {
         this.setState({ likes });
       });
 
-    if (this.state.isUserLoggedIn) {
-      let token = localStorage.getItem("token");
-      fetch("https://welcome-board-backend.herokuapp.com/api/v1/current_user", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Action: "application/json",
-          Authorization: `${token}`
-        }
-      });
-    }
+    // Commented by Carlo: will comment this block of code because the code is not doing anything and
+    // the state will default back to false if the page is reloaded
+    // which will make the block of code below useless.
+    // if (this.state.isUserLoggedIn) {
+    //   let token = localStorage.getItem("token");
+    //   fetch("https://welcome-board-backend.herokuapp.com/api/v1/current_user", {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Action: "application/json",
+    //       Authorization: `${token}`
+    //     }
+    //   });
+    // }
 
-    if (localStorage.length > 0) {
+    if (localStorage.getItem("token") !== null) {
       this.setState({
         currentUser: {
           id: localStorage.getItem("id"),
@@ -145,18 +151,17 @@ class App extends Component {
     if (parseInt(mod) > this.state.currentUser.mod_id) {
       alert("You can only submit posts for mods you are in or have completed.");
     } else {
-      let token = localStorage.getItem("token");
       fetch("https://welcome-board-backend.herokuapp.com/api/v1/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: this.state.token
+          Authorization: localStorage.getItem("token")
         },
         body: JSON.stringify({
           content: input,
           mod_id: parseInt(mod),
-          user_id: this.state.currentUser.id
+          user_id: parseInt(localStorage.getItem("id"))
         })
       })
         .then(res => res.json())
@@ -308,7 +313,6 @@ class App extends Component {
   }
 
   editPostHandler = (id, content) => {
-    console.log(id, content);
     fetch(`https://welcome-board-backend.herokuapp.com/api/v1/posts/${id}`, {
       method: "PATCH",
       headers: {
