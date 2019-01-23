@@ -1,6 +1,7 @@
 import React from "react";
 import EditPostForm from "./EditPostForm";
 import { withRouter } from "react-router-dom";
+
 class PostIt extends React.Component {
   constructor(props) {
     super(props);

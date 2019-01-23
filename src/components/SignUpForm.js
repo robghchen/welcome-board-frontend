@@ -5,7 +5,8 @@ class SignUpForm extends Component {
   state = {
     full_name: "",
     password: "",
-    mod_id: 1
+    mod_id: 1,
+    alert_error: false
   };
 
   changeHandler = event => {
@@ -17,7 +18,7 @@ class SignUpForm extends Component {
   submitSignUpHandler = event => {
     event.preventDefault();
 
-    if (this.state.full_name !== "" || this.state.password !== "") {
+    if (this.state.full_name !== "" && this.state.password !== "") {
       this.props.submitSignUpHandler(this.state, event);
       this.setState({
         full_name: "",
@@ -25,8 +26,8 @@ class SignUpForm extends Component {
         mod_id: 1
       });
     } else {
-      alert("Full name and password field cannot be empty.");
-      this.props.history.push("/signup");
+      this.setState({alert_error: true})
+      // this.props.history.push("/signup");
     }
   };
 
@@ -76,6 +77,7 @@ class SignUpForm extends Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
+                  {this.state.alert_error ? <span className="alert-error">Full name and password field cannot be empty.</span> : null}
                   <input
                     type="submit"
                     className="submit button"

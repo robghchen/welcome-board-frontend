@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 
 class NewPostForm extends Component {
   state = {
-    input: ""
+    input: "", 
+    alert_error: false
   };
 
   handleChange = e => {
@@ -15,10 +16,11 @@ class NewPostForm extends Component {
     if (this.state.input !== "") {
       this.props.addPost(this.state.input, this.props.mod);
       this.setState({
-        input: ""
+        input: "",
+        alert_error: false
       });
     } else {
-      alert("No blank comment please.");
+      {this.setState({alert_error: true})}
       this.props.history.push(`/mod/${this.props.mod}`);
     }
   };
@@ -39,7 +41,7 @@ class NewPostForm extends Component {
             value={this.state.input}
             onChange={this.handleChange}
           />
-          <br />
+          {this.state.alert_error ? <span className="alert-error">No blank comment please.</span> : null}
           <input className="submit button pointer" type="submit" />
         </form>
       </div>

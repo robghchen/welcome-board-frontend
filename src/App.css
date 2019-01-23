@@ -156,6 +156,22 @@ btn {
   margin-top: 3em;
 }
 
+.alert-error {
+  position: relative;
+  color: red;
+  top: 1em;
+  bottom: 1em;
+}
+
+#edit-postit-alert-error {
+  position: absolute;
+  color: red;
+  top: 10em;
+  left: 3em;
+  bottom: 1em;
+  width: 20em;
+}
+
 #postit-form {
   position: absolute;
   background: transparent;

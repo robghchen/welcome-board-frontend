@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      // alert_error: false,
       isUserLoggedIn: false,
       current_mod: 0,
       // please do not change the snake case
@@ -270,6 +271,7 @@ class App extends Component {
         if (res.status === 401) throw new Error(res.status);
         else return res.json();
       })
+      // .then(res => res.json())
       .then(res => {
         localStorage.setItem("token", res.jwt);
         localStorage.setItem("full_name", res.user.full_name);
@@ -287,8 +289,10 @@ class App extends Component {
         });
       })
       .catch(error => {
+        localStorage.setItem("loginError", "Invalid account/password")
         this.props.history.push("/login");
-        alert(`HTTP ERROR: ${error}, Unknown account or password!`);
+        // this.setState({ alert_error: true });
+        // alert(`HTTP ERROR: ${error}, Unknown account or password!`);
       });
   };
 
