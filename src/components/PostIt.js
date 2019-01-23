@@ -122,10 +122,6 @@ class PostIt extends React.Component {
         }
       }
     );
-<<<<<<< HEAD
-=======
-
->>>>>>> a8b7cc5889f485202215e3da3503b560ca7390f2
     this.props.deleteHandler(this.props.post.id);
   }
 }
