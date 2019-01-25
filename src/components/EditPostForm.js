@@ -32,10 +32,9 @@ class EditPostForm extends Component {
             value={this.state.input}
             onChange={this.changeHandler}
           />
-          <p>
-            <span className="author">- {this.props.author}</span>
-          </p>
-          
+
+          <span className="author-edit">- {this.props.author}</span>
+
           <input
             id="postit-submit"
             className="pointer"
@@ -43,9 +42,9 @@ class EditPostForm extends Component {
             value="Update"
           />
         </form>
-        <span id="edit-postit-alert-error">{this.state.alert_error ? 
-            "No blank comment please."
-           : null}</span>
+        <span id="edit-postit-alert-error">
+          {this.state.alert_error ? "No blank comment please." : null}
+        </span>
       </div>
     );
   }

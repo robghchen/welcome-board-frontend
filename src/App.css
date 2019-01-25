@@ -157,8 +157,15 @@ btn {
 .author {
   position: absolute;
   left: 0em;
-  width: 10em;
-  margin-top: 3em;
+  width: 9em;
+  top: 8.5em;
+}
+
+.author-edit {
+  position: absolute;
+  left: 2em;
+  width: 9em;
+  top: 10em;
 }
 
 .alert-error {
@@ -288,7 +295,7 @@ h1 span:nth-child(8) {
 }
 
 #welcome {
-  position:relative;
+  position: relative;
   margin-top: 80px;
   margin-left: 40%;
   margin-right: auto;
