@@ -15,7 +15,7 @@ class NewPostForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.input !== "") {
-      if (this.props.currentUser.mod_id > this.props.mod_id) {
+      if (this.props.currentUser.mod_id >= this.props.mod_id) {
         this.props.addPost(this.state.input, this.props.mod_id);
       } else {
         this.setState({ alert_error_mod_id: true });
