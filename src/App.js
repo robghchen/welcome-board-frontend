@@ -243,6 +243,9 @@ class App extends Component {
       })
       .then(res => {
         localStorage.setItem("token", res.jwt);
+        localStorage.setItem("id", res.user.id);
+        localStorage.setItem("full_name", res.user.full_name);
+        localStorage.setItem("mod_id", res.user.mod_id);
         this.setState({
           isUserLoggedIn: true,
           token: localStorage.getItem("token"),
