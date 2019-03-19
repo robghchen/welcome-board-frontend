@@ -34,7 +34,7 @@ class App extends Component {
     this.updateHandler = this.updateHandler.bind(this);
   }
 
-  componentDidMount() {
+  fetchRequests = () => {
     fetch("https://welcome-board-backend.herokuapp.com/api/v1/mods")
       .then(resp => resp.json())
       .then(mods => this.setState({ mods }));
@@ -57,6 +57,11 @@ class App extends Component {
       .then(likes => {
         this.setState({ likes });
       });
+  }
+  
+  componentDidMount() {
+    
+    this.fetchRequests()
 
     // Commented by Carlo: will comment this block of code because the code is not doing anything and
     // the state will default back to false if the page is reloaded
@@ -99,6 +104,11 @@ class App extends Component {
   }
 
   render() {
+    if(this.state.posts.length < 1) {
+      setInterval(function() {
+        this.fetchRequests()
+      }, 3000)
+    }
     return (
       <div>
         <NavBar
