@@ -35,24 +35,24 @@ class App extends Component {
   }
 
   fetchRequests = () => {
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/mods")
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/mods")
       .then(resp => resp.json())
       .then(mods => this.setState({ mods }));
 
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/users")
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/users")
       .then(resp => resp.json())
       .then(users => {
         localStorage.setItem("users", JSON.stringify(users));
         // this.setState({ users })
       });
 
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/posts")
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/posts")
       .then(resp => resp.json())
       .then(posts => {
         this.setState({ posts });
       });
 
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/likes")
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/likes")
       .then(resp => resp.json())
       .then(likes => {
         this.setState({ likes });
@@ -68,7 +68,7 @@ class App extends Component {
     // which will make the block of code below useless.
     // if (this.state.isUserLoggedIn) {
     //   let token = localStorage.getItem("token");
-    //   fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/current_user", {
+    //   fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/current_user", {
     //     method: "GET",
     //     headers: {
     //       "Content-Type": "application/json",
@@ -92,7 +92,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/users")
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/users")
       .then(resp => resp.json())
       .then(users => {
         localStorage.setItem("users", JSON.stringify(users));
@@ -173,7 +173,7 @@ class App extends Component {
   }
 
   addNewPost = (input, mod) => {
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/posts", {
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,7 +198,7 @@ class App extends Component {
     this.setState({ currentUser });
 
     fetch(
-      `http://combined-backend.herokuapp.com/welcomeboard/api/v1/users/${
+      `https://combined-backend.herokuapp.com/welcomeboard/api/v1/users/${
         currentUser.id
       }`,
       {
@@ -235,7 +235,7 @@ class App extends Component {
   };
 
   createUser = userInfo => {
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/users", {
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -280,7 +280,7 @@ class App extends Component {
   };
 
   getUser = userInfo => {
-    fetch("http://combined-backend.herokuapp.com/welcomeboard/api/v1/login", {
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -346,7 +346,7 @@ class App extends Component {
   }
 
   editPostHandler = (id, content) => {
-    fetch(`http://combined-backend.herokuapp.com/welcomeboard/api/v1/posts/${id}`, {
+    fetch(`https://combined-backend.herokuapp.com/welcomeboard/api/v1/posts/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
