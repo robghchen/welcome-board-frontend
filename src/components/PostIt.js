@@ -14,7 +14,7 @@ class PostIt extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes")
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/likes")
       .then(resp => resp.json())
       .then(likes => {
         const postLikes = likes.filter(
@@ -91,7 +91,7 @@ class PostIt extends React.Component {
   }
 
   likesHandler() {
-    fetch("https://welcome-board-backend.herokuapp.com/api/v1/likes", {
+    fetch("https://combined-backend.herokuapp.com/welcomeboard/api/v1/likes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -113,9 +113,7 @@ class PostIt extends React.Component {
   deleteHandler() {
     // this.setState({ markedForDeletion: true });
     fetch(
-      `https://welcome-board-backend.herokuapp.com/api/v1/posts/${
-        this.props.post.id
-      }`,
+      `https://combined-backend.herokuapp.com/welcomeboard/api/v1/posts/${this.props.post.id}`,
       {
         method: "DELETE",
         headers: {

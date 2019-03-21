@@ -57,11 +57,10 @@ class App extends Component {
       .then(likes => {
         this.setState({ likes });
       });
-  }
-  
+  };
+
   componentDidMount() {
-    
-    this.fetchRequests()
+    this.fetchRequests();
 
     // Commented by Carlo: will comment this block of code because the code is not doing anything and
     // the state will default back to false if the page is reloaded
@@ -197,24 +196,19 @@ class App extends Component {
   updateHandler(currentUser) {
     this.setState({ currentUser });
 
-    fetch(
-      `https://combined-backend.herokuapp.com/welcomeboard/api/v1/users/${
-        currentUser.id
-      }`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: this.state.token
-        },
-        body: JSON.stringify({
-          full_name: currentUser.full_name,
-          password: currentUser.password,
-          mod_id: currentUser.mod_id
-        })
-      }
-    )
+    fetch(`https://combined-backend.herokuapp.com/welcomeboard/api/v1/users/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: this.state.token
+      },
+      body: JSON.stringify({
+        full_name: currentUser.full_name,
+        password: currentUser.password,
+        mod_id: currentUser.mod_id
+      })
+    })
       .then(resp => resp.json())
       .then(user => {
         this.setState({
